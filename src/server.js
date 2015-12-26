@@ -1,7 +1,4 @@
 import express from 'express';
-import auth from 'basic-auth';
-import _ from 'lodash';
-import bodyParser from 'body-parser';
 
 const app = express();
 
