@@ -31,6 +31,8 @@ References:
 
   * http://www.restapitutorial.com/lessons/httpmethods.html
   * http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put
+  
+Reason: This makes it more predictable, in that HTTP methods are used in the same way as in many other API's, and according to widely-adopted conventions.
 
 ## Use `true`/`false` instead of `"on"`/`"off"`
 
