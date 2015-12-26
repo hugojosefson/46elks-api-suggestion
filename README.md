@@ -31,3 +31,9 @@ References:
 
   * http://www.restapitutorial.com/lessons/httpmethods.html
   * http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put
+
+## Use `true`/`false` instead of `"on"`/`"off"`
+
+In JSON, use `true` and `false` instead of the strings `"on"` and `"off"`.
+
+Reason: This makes it more predictable, in that if the property sounds like a boolean flag, it is represented as one too.
