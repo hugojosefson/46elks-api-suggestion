@@ -16,6 +16,18 @@ Always accept JSON as input, and always respond with JSON.
 
 Reason: This makes it more predictable, and makes the developer not have to keep track of where JSON goes and where `x-www-form-urlencoded` goes.
 
-## Use HTTP methods according to spec
+## Predictable HTTP methods according to spec, conventions
 
+Use `POST` only for non-idempotent creation of subordinate resources. Make sure to respond with appropriate status code,
+and any `Location: ` header where applicable.
 
+Use `PUT` for replacing a resource completely with what's in the request body, setting properties not included to `null`.
+ 
+Use `PATCH` for replacing only the included properties of a resource.
+
+*// TODO more details, examples*
+
+References:
+
+  * http://www.restapitutorial.com/lessons/httpmethods.html
+  * http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put
