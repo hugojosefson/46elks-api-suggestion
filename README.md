@@ -4,7 +4,7 @@ The [API for 46elks.com](http://www.46elks.com/docs) is very interesting and goo
 
 These are some suggestions for how the 46elks.com API can be improved.
 
-## `/v1`, `/v2` and so on for API version
+## Predictable version identifier in URI
 
 Use `/v2` for the next version of the API, rather than `/a1`, `/a2` or `/b2`.
 
