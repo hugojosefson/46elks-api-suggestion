@@ -74,3 +74,35 @@ References:
   * https://danielmiessler.com/study/url_vs_uri/
   * http://webmasters.stackexchange.com/questions/19101/what-is-the-difference-between-a-uri-and-a-url
   
+## Use `application/hal+json`
+
+Supply links to related resources, from any resource where it is applicable.
+
+Let the client use provided links, so they don't need to build the URI's themselves to each resource, and you don't need to document or set in stone the actual URI structures.
+
+Provide a common way of representing a resource, and any relevant embedded other resources.
+
+Do all this using the HAL standard, because it is easier for both developers and users of an API to refer to an existing standard, rather that rolling their own.
+
+References:
+
+  * http://stateless.co/hal_specification.html
+  
+### `GET /v2`
+
+#### Response status
+
+`200 OK`
+
+#### Response body
+
+```json
+{
+    "_links": {
+        "_self": "https://api.46elks.com/v2",
+        "numbers": "https://api.46elks.com/v2/numbers",
+        "sms": "https://api.46elks.com/v2/sms",
+        "calls": "https://api.46elks.com/v2/calls"
+    }
+}
+```
