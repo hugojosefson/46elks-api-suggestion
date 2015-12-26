@@ -48,7 +48,7 @@ Instead of `/Numbers`, `/Calls` and `/SMS`, use `/numbers`, `/calls`, `/sms`.
 
 Reason: Not having to think about whether the resource has an initial upper-case character or is in all-caps, or something else, makes it more predictable. The most common way to write identifiers is in all lower-case.
  
-## Use the phone number as identifier, and relevant HTTP methods
+## Use phone number as identifier, and relevant HTTP methods
 
 For the `/numbers` resources, use the actual phone number as identifier, instead of a separate id.
 
