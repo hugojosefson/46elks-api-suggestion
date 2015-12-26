@@ -10,7 +10,7 @@ This is work in progress. Not even a draft yet.
 
 Written by Hugo Josefson <hugo@josefson.org>.
 
-If you have further suggestions, or like to discuss any change here, feel free to make a Pull Request or Issue on this repo!
+If you have further suggestions, or like to discuss any change here, feel free to make a [Pull Request](https://github.com/hugojosefson/46elks-api-suggestion/pulls) or file an [Issue](https://github.com/hugojosefson/46elks-api-suggestion/issues) on this repo!
 
 ### TODO
 
