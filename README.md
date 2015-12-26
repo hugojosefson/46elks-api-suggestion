@@ -62,3 +62,15 @@ Example, for the phone number `+4670000000`:
   * `GET /numbers/%2B4670000000` retrieves information about the phone number. Response code `200 OK` allocated to current user, `404 Not found` if not allocated, `403 Forbidden` if allocated to someone else (or `404 Not Found` if there is a good reason why that fact should not be known to the public).
   * `PATCH /numbers/%2B4670000000` with some parameters in the body, reconfigures an allocated phone number.
   * `DELETE /numbers/%2B4670000000` de-allocates a phone number.
+  
+## Tentative: Use `uri` instead of `url`
+
+*// TODO think about this some more. Also consider predictability; if it needs to be `uri` in one place, maybe better to go with `uri` everywhere.* 
+
+References:
+
+  * http://www.w3.org/TR/uri-clarification/
+  * http://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-a-url-and-a-urn
+  * https://danielmiessler.com/study/url_vs_uri/
+  * http://webmasters.stackexchange.com/questions/19101/what-is-the-difference-between-a-uri-and-a-url
+  
