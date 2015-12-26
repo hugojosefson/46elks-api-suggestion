@@ -46,4 +46,19 @@ Example in current API: http://www.46elks.com/docs#phone-numbers
 
 Instead of `/Numbers`, `/Calls` and `/SMS`, use `/numbers`, `/calls`, `/sms`.
 
-Reason: Not having to think about whether the resource has an initial upper-case character or is in all-caps, or something else, makes it more predictable. The most common way to write identifiers is in all lower-case. 
+Reason: Not having to think about whether the resource has an initial upper-case character or is in all-caps, or something else, makes it more predictable. The most common way to write identifiers is in all lower-case.
+ 
+## Use the phone number as identifier, and relevant HTTP methods
+
+For the `/numbers` resources, use the actual phone number as identifier, instead of a separate id.
+
+Use relevant HTTP methods for requests, and HTTP status codes for responses.
+
+Remove the `"active"` property. This is now represented by response status codes (`200` vs others), and the `DELETE` method.
+
+Example, for the phone number `+4670000000`:
+
+  * `POST /numbers` allocates a new number, returning `201 Created` with a `Location: https://api.46elks.com/v2/numbers/%2B4670000000` header pointing to the newly created resource.
+  * `GET /numbers/%2B4670000000` retrieves information about the phone number. Response code `200 OK` allocated to current user, `404 Not found` if not allocated, `403 Forbidden` if allocated to someone else (or `404 Not Found` if there is a good reason why that fact should not be known to the public).
+  * `PATCH /numbers/%2B4670000000` with some parameters in the body, reconfigures an allocated phone number.
+  * `DELETE /numbers/%2B4670000000` de-allocates a phone number.
