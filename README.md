@@ -4,19 +4,37 @@ The [API for 46elks.com](http://www.46elks.com/docs) is very interesting and goo
 
 These are some suggestions for how the 46elks.com API can be improved.
 
-## Predictable version identifier in URI
+## Status of this document
+
+This is work in progress. Not even a draft yet.
+
+Written by Hugo Josefson <hugo@josefson.org>.
+
+If you have further suggestions, or like to discuss any change here, feel free to make a Pull Request or Issue on this repo!
+
+### TODO
+
+ * Add more examples, details under `hal+json`.
+ * Add more suggestions from the top of my head.
+ * Go through existing API, and add suggestions for each section.
+ * Structure this document / repo.
+ * Implement suggested API as an API proxy.
+
+## The suggested changes
+
+### Predictable version identifier in URI
 
 Use `/v2` for the next version of the API, rather than `/a1`, `/a2` or `/b2`.
 
 Reason: Many APIs use `/v1`, `/v2` etc in their URIs to denote the API version. It is a predictable format.
 
-## Be consistent with JSON vs form POST
+### Be consistent with JSON vs form POST
 
 Always accept JSON as input, and always respond with JSON.
 
 Reason: This makes it more predictable, and makes the developer not have to keep track of where JSON goes and where `x-www-form-urlencoded` goes.
 
-## Predictable HTTP methods according to spec, conventions
+### Predictable HTTP methods according to spec, conventions
 
 Use `POST` only for non-idempotent creation of subordinate resources. Make sure to respond with appropriate status code,
 and any `Location: ` header where applicable.
@@ -34,7 +52,7 @@ References:
   
 Reason: This makes it more predictable, in that HTTP methods are used in the same way as in many other API's, and according to widely-adopted conventions.
 
-## Use `true`/`false` instead of `"yes"`/`"no"`
+### Use `true`/`false` instead of `"yes"`/`"no"`
 
 In JSON, use `true` and `false` instead of the strings `"yes"` and `"no"`.
 
@@ -42,13 +60,13 @@ Reason: This makes it more predictable, in that if the property sounds like a bo
 
 Example in current API: http://www.46elks.com/docs#phone-numbers
 
-## Use all lower-case in resource names
+### Use all lower-case in resource names
 
 Instead of `/Numbers`, `/Calls` and `/SMS`, use `/numbers`, `/calls`, `/sms`.
 
 Reason: Not having to think about whether the resource has an initial upper-case character or is in all-caps, or something else, makes it more predictable. The most common way to write identifiers is in all lower-case.
  
-## Use phone number as identifier, and relevant HTTP methods
+### Use phone number as identifier, and relevant HTTP methods
 
 For the `/numbers` resources, use the actual phone number as identifier, instead of a separate id.
 
@@ -63,7 +81,7 @@ Example, for the phone number `+4670000000`:
   * `PATCH /numbers/%2B4670000000` with some parameters in the body, reconfigures an allocated phone number.
   * `DELETE /numbers/%2B4670000000` de-allocates a phone number.
   
-## Tentative: Use `uri` instead of `url`
+### Tentative: Use `uri` instead of `url`
 
 *// TODO think about this some more. Also consider predictability; if it needs to be `uri` in one place, maybe better to go with `uri` everywhere.* 
 
@@ -74,7 +92,7 @@ References:
   * https://danielmiessler.com/study/url_vs_uri/
   * http://webmasters.stackexchange.com/questions/19101/what-is-the-difference-between-a-uri-and-a-url
   
-## Use `application/hal+json`
+### Use `application/hal+json`
 
 Supply links to related resources, from any resource where it is applicable.
 
@@ -88,13 +106,13 @@ References:
 
   * http://stateless.co/hal_specification.html
   
-### `GET /v2`
+#### `GET /v2`
 
-#### Response status
+##### Response status
 
 `200 OK`
 
-#### Response body
+##### Response body
 
 ```json
 {
