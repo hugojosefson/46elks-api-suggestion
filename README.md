@@ -34,8 +34,10 @@ References:
   
 Reason: This makes it more predictable, in that HTTP methods are used in the same way as in many other API's, and according to widely-adopted conventions.
 
-## Use `true`/`false` instead of `"on"`/`"off"`
+## Use `true`/`false` instead of `"yes"`/`"no"`
 
-In JSON, use `true` and `false` instead of the strings `"on"` and `"off"`.
+In JSON, use `true` and `false` instead of the strings `"yes"` and `"no"`.
 
 Reason: This makes it more predictable, in that if the property sounds like a boolean flag, it is represented as one too.
+
+Example in current API: http://www.46elks.com/docs#phone-numbers
