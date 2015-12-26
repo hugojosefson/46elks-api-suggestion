@@ -41,3 +41,9 @@ In JSON, use `true` and `false` instead of the strings `"yes"` and `"no"`.
 Reason: This makes it more predictable, in that if the property sounds like a boolean flag, it is represented as one too.
 
 Example in current API: http://www.46elks.com/docs#phone-numbers
+
+## Use all lower-case in resource names
+
+Instead of `/Numbers`, `/Calls` and `/SMS`, use `/numbers`, `/calls`, `/sms`.
+
+Reason: Not having to think about whether the resource has an initial upper-case character or is in all-caps, or something else, makes it more predictable. The most common way to write identifiers is in all lower-case. 
