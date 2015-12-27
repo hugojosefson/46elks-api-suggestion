@@ -4,6 +4,7 @@ import v2 from 'routes/v2';
 
 const app = express();
 app.set('json spaces', 2);
+app.set('trust proxy', true);
 
 app.get('/version', version);
 app.get('/', (req, res) => res.redirect(302, 'v2'));
