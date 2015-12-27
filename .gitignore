@@ -2,3 +2,4 @@
 /node_modules/
 /*.log
 .*.swp
+/src/git-info.json
