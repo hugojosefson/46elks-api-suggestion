@@ -40,7 +40,7 @@ Use `POST` only for non-idempotent creation of subordinate resources. Make sure 
 and any `Location: ` header where applicable.
 
 Use `PUT` for replacing a resource completely with what's in the request body, setting properties not included to `null`.
- 
+
 Use `PATCH` for replacing only the included properties of a resource.
 
 *// TODO more details, examples*
@@ -49,7 +49,7 @@ References:
 
   * http://www.restapitutorial.com/lessons/httpmethods.html
   * http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put
-  
+
 Reason: This makes it more predictable, in that HTTP methods are used in the same way as in many other API's, and according to widely-adopted conventions.
 
 ### Use `true`/`false` instead of `"yes"`/`"no"`
@@ -65,7 +65,7 @@ Example in current API: http://www.46elks.com/docs#phone-numbers
 Instead of `/Numbers`, `/Calls` and `/SMS`, use `/numbers`, `/calls`, `/sms`.
 
 Reason: Not having to think about whether the resource has an initial upper-case character or is in all-caps, or something else, makes it more predictable. The most common way to write identifiers is in all lower-case.
- 
+
 ### Use phone number as identifier, and relevant HTTP methods
 
 For the `/numbers` resources, use the actual phone number as identifier, instead of a separate id.
@@ -80,10 +80,10 @@ Example, for the phone number `+4670000000`:
   * `GET /numbers/%2B4670000000` retrieves information about the phone number. Response code `200 OK` allocated to current user, `404 Not found` if not allocated, `403 Forbidden` if allocated to someone else (or `404 Not Found` if there is a good reason why that fact should not be known to the public).
   * `PATCH /numbers/%2B4670000000` with some parameters in the body, reconfigures an allocated phone number.
   * `DELETE /numbers/%2B4670000000` de-allocates a phone number.
-  
+
 ### Tentative: Use `uri` instead of `url`
 
-*// TODO think about this some more. Also consider predictability; if it needs to be `uri` in one place, maybe better to go with `uri` everywhere.* 
+*// TODO think about this some more. Also consider predictability; if it needs to be `uri` in one place, maybe better to go with `uri` everywhere.*
 
 References:
 
@@ -91,7 +91,7 @@ References:
   * http://stackoverflow.com/questions/176264/what-is-the-difference-between-a-uri-a-url-and-a-urn
   * https://danielmiessler.com/study/url_vs_uri/
   * http://webmasters.stackexchange.com/questions/19101/what-is-the-difference-between-a-uri-and-a-url
-  
+
 ### Use `application/hal+json`
 
 Supply links to related resources, from any resource where it is applicable.
@@ -105,7 +105,8 @@ Do all this using the HAL standard, because it is easier for both developers and
 References:
 
   * http://stateless.co/hal_specification.html
-  
+  * http://phlyrestfully.readthedocs.org/en/latest/halprimer.html
+
 #### `GET /v2`
 
 ##### Response status
