@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import renameKey from 'utils/rename-key';
+import renameKey from '../utils/rename-key';
 
 export const back = number => _(number)
     .thru(renameKey('sms_uri', 'sms_url'))

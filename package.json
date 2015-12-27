@@ -5,8 +5,8 @@
   "description": "Suggested improved API for 46elks.com",
   "main": "babel.server.js",
   "scripts": {
-    "start": "NODE_PATH=\"./src\" node --harmony ./babel.server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --harmony ./babel.server",
+    "test": "mocha --compilers js:babel-register"
   },
   "author": "Hugo Josefson <hugo@josefson.org>",
   "repository": "hugojosefson/46elks-api-suggestion",
@@ -26,5 +26,15 @@
     "nodemon": "^1.8.1",
     "piping": "^0.3.0",
     "request-promise": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel-register": "^6.3.13",
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
