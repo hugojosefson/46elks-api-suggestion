@@ -8,7 +8,7 @@ export default (req, res) => {
     request({
         uri: 'https://api.46elks.com/a1/Numbers/' + encodeURIComponent(req.params.id),
         method: 'post',
-        headers: _.omit(req.headers, ['cookie', 'host']),
+        headers: _.pick(req.headers, 'authorization'),
         form: {
             active: 'no'
         }

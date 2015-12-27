@@ -11,7 +11,7 @@ const allocateNumber = (req, res) => {
     request({
         uri: 'https://api.46elks.com/a1/Numbers',
         method: 'post',
-        headers: _.omit(req.headers, ['cookie', 'host']),
+        headers: _.pick(req.headers, 'authorization'),
         form: transformNumberBack(req.body)
     }).then(resultString => {
         const result = JSON.parse(resultString);

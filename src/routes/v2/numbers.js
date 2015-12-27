@@ -7,7 +7,7 @@ import transformNumber from '../../transformers/number';
 export default (req, res) => {
     request({
         uri: 'https://api.46elks.com/a1/Numbers',
-        headers: _.omit(req.headers, ['cookie', 'host']),
+        headers: _.pick(req.headers, 'authorization'),
         json: true
     }).then(result => {
         const numbers = _(result.data)
