@@ -11,8 +11,14 @@ export default (req, res) => {
     }).then(result => {
         result.data = _(result.data)
             .filter(number => number.active === 'yes')
-            .map(transformNumber(_.partial(fullUrl, req)))
+            .map(number => _.assign({
+                _links: {
+                    _self: fullUrl(req, encodeURIComponent(number.id))
+                }
+            }, number))
+            .map(transformNumber)
             .value();
+
         res.type('application/hal+json').send(_.assign({
             _links: {
                 _self: fullUrl(req)
