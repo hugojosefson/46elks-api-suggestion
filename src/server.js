@@ -8,6 +8,7 @@ import v2Numbers from './routes/v2/numbers';
 import v2NumbersPost from './routes/v2/numbers-post';
 import v2NumbersId from './routes/v2/numbers/id';
 import v2NumbersIdDelete from './routes/v2/numbers/id-delete';
+import v2NumbersIdPatch from './routes/v2/numbers/id-patch';
 
 const app = express();
 app.set('json spaces', 2);
@@ -24,6 +25,7 @@ app.get('/v2/numbers', v2Numbers);
 app.post('/v2/numbers', v2NumbersPost);
 app.get('/v2/numbers/:id', v2NumbersId);
 app.delete('/v2/numbers/:id', v2NumbersIdDelete);
+app.patch('/v2/numbers/:id', v2NumbersIdPatch);
 
 app.use('/echo', echo);
 
