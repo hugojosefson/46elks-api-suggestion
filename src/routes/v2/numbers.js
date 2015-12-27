@@ -9,20 +9,23 @@ export default (req, res) => {
         headers: _.omit(req.headers, ['cookie', 'host']),
         json: true
     }).then(result => {
-        result.data = _(result.data)
+        const numbers = _(result.data)
             .filter(number => number.active === 'yes')
             .map(number => _.assign({
                 _links: {
-                    _self: fullUrl(req, encodeURIComponent(number.id))
+                    _self: {href: fullUrl(req, encodeURIComponent(number.id))}
                 }
             }, number))
             .map(transformNumber)
             .value();
 
-        res.type('application/hal+json').send(_.assign({
+        res.type('application/hal+json').send({
             _links: {
-                _self: fullUrl(req)
+                _self: {href: fullUrl(req)}
+            },
+            _embedded: {
+                numbers
             }
-        }, result));
+        });
     })
 }

@@ -9,11 +9,10 @@ export default (req, res) => {
         headers: _.omit(req.headers, ['cookie', 'host']),
         json: true
     }).then(result => {
-        res.type('application/hal+json').send({
+        res.type('application/hal+json').send(_.assign({
             _links: {
-                _self: fullUrl(req)
-            },
-            data: transformNumber(result)
-        });
+                _self: {href: fullUrl(req)}
+            }
+        }, transformNumber(result)));
     })
 }
