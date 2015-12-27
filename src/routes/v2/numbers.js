@@ -23,6 +23,8 @@ export default (req, res) => {
             _links: {
                 _self: {href: fullUrl(req)}
             },
+            count: numbers.length,
+            total: numbers.length,
             _embedded: {
                 numbers
             }
