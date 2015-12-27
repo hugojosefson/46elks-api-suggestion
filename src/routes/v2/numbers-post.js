@@ -1,9 +1,10 @@
 import request from 'request-promise';
 import _ from 'lodash';
-import fullUrl from 'utils/full-url';
-import {default as transformNumber, back as transformNumberBack} from 'transformers/number';
 import {compose} from 'compose-middleware';
 import bodyParser from 'body-parser';
+
+import {default as transformNumber, back as transformNumberBack} from 'transformers/number';
+import fullUrl from 'utils/full-url';
 import renameKey from 'utils/rename-key';
 
 const allocateNumber = (req, res) => {

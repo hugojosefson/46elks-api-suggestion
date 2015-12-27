@@ -1,11 +1,13 @@
 import express from 'express';
+
+import health from 'routes/health';
 import version from 'routes/version';
 import echo from 'routes/echo';
 import v2 from 'routes/v2';
 import v2Numbers from 'routes/v2/numbers';
 import v2NumbersPost from 'routes/v2/numbers-post';
-import v2NumbersId from 'routes/v2/numbers-id';
-import v2NumbersIdDelete from 'routes/v2/numbers-id-delete';
+import v2NumbersId from 'routes/v2/numbers/id';
+import v2NumbersIdDelete from 'routes/v2/numbers/id-delete';
 
 const app = express();
 app.set('json spaces', 2);
@@ -14,6 +16,7 @@ app.set('strict routing', true);
 app.enable('strict routing');
 app.set('case sensitive routing', true);
 
+app.get('/health', health);
 app.get('/version', version);
 app.get('/', (req, res) => res.redirect(302, 'v2'));
 app.get('/v2', v2);
