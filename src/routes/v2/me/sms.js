@@ -9,6 +9,9 @@ export default (req, res) => {
     request({
         uri: 'https://api.46elks.com/a1/SMS',
         headers: _.pick(req.headers, 'authorization'),
+        qs: {
+            start: req.query.start
+        },
         json: true
     }).then(result => {
         const smses = _(result.data)
@@ -21,10 +24,16 @@ export default (req, res) => {
             .map(transformSms)
             .value();
 
+        const _links = {
+            _self: {href: fullUrl(req)}
+        };
+
+        if (result.next) {
+            _links.next = {href: fullUrl(req, '?start=' + encodeURIComponent(result.next))}
+        }
+
         res.type('application/hal+json').send({
-            _links: {
-                _self: {href: fullUrl(req)}
-            },
+            _links,
             count: smses.length,
             _embedded: {
                 smses

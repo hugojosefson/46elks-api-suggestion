@@ -1,11 +1,12 @@
 import _ from 'lodash';
 
-function path(first, second, ...rest) {
+export function path(first, second, ...rest) {
     if (typeof second === 'undefined') {
         return first;
     } else {
         if (rest.length === 0) {
-            return [_.trimRight(first, '/'), _.trimLeft(second, '/')].join('/');
+            const separator = second.startsWith('?') ? '' : '/';
+            return [_.trimRight(first, '/'), _.trimLeft(second, '/')].join(separator);
         } else {
             return path(path(first, second), ...rest);
         }
