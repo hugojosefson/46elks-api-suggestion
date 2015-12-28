@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
-import renameKey from '../utils/rename-key';
+import renameKey from '../../utils/rename-key';
+import collectImages from './collect-images';
+import expandImages from './expand-images';
 
 export const back = sms => _(sms)
     .thru(renameKey('flash', 'flashsms'))
@@ -11,7 +13,9 @@ export const back = sms => _(sms)
             return [key, value];
         }
     })
+    .compact()
     .object()
+    .thru(expandImages)
     .value();
 
 export default sms => _(sms)
@@ -25,4 +29,5 @@ export default sms => _(sms)
         }
     })
     .object()
+    .thru(collectImages)
     .value();
