@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 
 import {default as transformNumber, back as transformNumberBack} from '../../../transformers/number';
 import fullUrl from '../../../utils/full-url';
-import renameKey from '../../../utils/rename-key';
 
 const allocateNumber = (req, res) => {
     request({
