@@ -26,7 +26,6 @@ export default (req, res) => {
                 _self: {href: fullUrl(req)}
             },
             count: smses.length,
-            total: smses.length,
             _embedded: {
                 smses
             }
