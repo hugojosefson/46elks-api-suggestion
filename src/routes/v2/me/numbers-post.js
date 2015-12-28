@@ -27,7 +27,7 @@ const allocateNumber = (req, res) => {
     }, error => {
         console.error(error);
         const body = error && error.response && error.response.body;
-        if (body && body.startsWith('Missing key')) {
+        if (body && (body.startsWith('Missing key') || /^Key .*? missing$/.test(body))) {
             res.status(400).type('text').send(body);
         } else {
             const statusCode = error && error.response && error.response.statusCode || 500;
