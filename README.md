@@ -14,11 +14,10 @@ If you have further suggestions, or like to discuss any change here, feel free t
 
 ### TODO
 
- * Add more examples, details under `hal+json`.
- * Add more suggestions from the top of my head.
- * Go through existing API, and add suggestions for each section.
- * Structure this document / repo.
  * Implement suggested API as an API proxy.
+   * Go through existing API docs, and implement as I go along, except callbacks.
+   * Implement proxying callbacks. Find all occurrences of it in the current API docs.
+ * Structure this document / repo.
 
 ## The suggested changes
 
