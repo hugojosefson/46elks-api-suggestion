@@ -3,8 +3,8 @@ import _ from 'lodash';
 import {compose} from 'compose-middleware';
 import bodyParser from 'body-parser';
 
-import fullUrl from '../../../utils/full-url';
-import {default as transformNumber, back as transformNumberBack} from '../../../transformers/number';
+import fullUrl from '../../../../utils/full-url';
+import {default as transformNumber, back as transformNumberBack} from '../../../../transformers/number';
 
 const patchNumber = (req, res) => {
     request({
