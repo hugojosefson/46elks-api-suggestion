@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import {default as transformSms, back as transformSmsBack} from '../../../transformers/sms';
 import fullUrl from '../../../utils/full-url';
 
-const allocateSms = (req, res) => {
+const sendSms = (req, res) => {
     request({
         uri: 'https://api.46elks.com/a1/SMS',
         method: 'post',
@@ -42,5 +42,5 @@ const allocateSms = (req, res) => {
 
 export default compose([
     bodyParser.json(),
-    allocateSms
+    sendSms
 ]);
