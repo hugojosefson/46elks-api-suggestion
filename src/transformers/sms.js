@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import renameKey from '../utils/rename-key';
 
-export const back = number => _(number)
+export const back = sms => _(sms)
     .thru(renameKey('flash', 'flashsms'))
     .map(function (value, key) {
         if (key === 'flashsms') {
@@ -14,7 +14,7 @@ export const back = number => _(number)
     .object()
     .value();
 
-export default number => _(number)
+export default sms => _(sms)
     .omit(['id'])
     .thru(renameKey('flashsms', 'flash'))
     .map(function (value, key) {
