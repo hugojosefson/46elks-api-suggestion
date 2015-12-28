@@ -30,5 +30,13 @@ export default (req, res) => {
                 numbers
             }
         });
-    })
+    }, error => {
+        const body = error && error.response && error.response.body;
+        const statusCode = error && error.response && error.response.statusCode || 500;
+        if (body) {
+            res.status(statusCode).send(body);
+        } else {
+            res.sendStatus(statusCode);
+        }
+    });
 }

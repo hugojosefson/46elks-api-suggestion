@@ -1,6 +1,7 @@
 import request from 'request-promise';
 import _ from 'lodash';
 
+import deletedSmses from '../../../state/deleted-smses';
 import fullUrl from '../../../utils/full-url';
 import transformSms from '../../../transformers/sms';
 
@@ -11,6 +12,7 @@ export default (req, res) => {
         json: true
     }).then(result => {
         const smses = _(result.data)
+            .filter(sms => !deletedSmses.has(sms.id))
             .map(sms => _.assign({
                 _links: {
                     _self: {href: fullUrl(req, encodeURIComponent(sms.id))}

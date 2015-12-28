@@ -14,6 +14,7 @@ import v2MeNumbersIdPatch from './routes/v2/me/numbers/id-patch';
 import v2MeSms from './routes/v2/me/sms';
 import v2MeSmsPost from './routes/v2/me/sms-post';
 import v2MeSmsId from './routes/v2/me/sms/id';
+import v2MeSmsIdDelete from './routes/v2/me/sms/id-delete';
 
 const app = express();
 app.set('json spaces', 2);
@@ -40,8 +41,9 @@ app.use('/v2/me/numbers', allowMethods(['options', 'get', 'post']));
 app.get('/v2/me/numbers', v2MeNumbers);
 app.post('/v2/me/numbers', v2MeNumbersPost);
 
-app.use('/v2/me/sms/:id', allowMethods(['options', 'get']));
+app.use('/v2/me/sms/:id', allowMethods(['options', 'get', 'delete']));
 app.get('/v2/me/sms/:id', v2MeSmsId);
+app.delete('/v2/me/sms/:id', v2MeSmsIdDelete);
 
 app.use('/v2/me/sms', allowMethods(['options', 'get', 'post']));
 app.get('/v2/me/sms', v2MeSms);
