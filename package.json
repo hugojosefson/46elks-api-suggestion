@@ -12,6 +12,7 @@
   "repository": "hugojosefson/46elks-api-suggestion",
   "license": "MIT",
   "dependencies": {
+    "allow-methods": "^1.0.1",
     "babel": "^6.3.26",
     "babel-core": "^6.3.26",
     "babel-polyfill": "^6.3.14",

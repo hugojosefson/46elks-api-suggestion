@@ -1,4 +1,5 @@
 import express from 'express';
+import allowMethods from 'allow-methods';
 
 import health from './routes/health';
 import version from './routes/version';
@@ -17,17 +18,29 @@ app.set('strict routing', true);
 app.enable('strict routing');
 app.set('case sensitive routing', true);
 
+app.use('/health', allowMethods(['options', 'get']));
 app.get('/health', health);
+
+app.use('/echo', allowMethods(['options', 'get']));
+app.use('/echo', echo);
+
+app.use('/version', allowMethods(['options', 'get']));
 app.get('/version', version);
+
+app.use('/', allowMethods(['options', 'get']));
 app.get('/', (req, res) => res.redirect(302, 'v2'));
+
+app.use('/v2', allowMethods(['options', 'get']));
 app.get('/v2', v2);
+
+app.use('/v2/numbers', allowMethods(['options', 'get', 'post']));
 app.get('/v2/numbers', v2Numbers);
 app.post('/v2/numbers', v2NumbersPost);
+
+app.use('/v2/numbers/:id', allowMethods(['options', 'get', 'delete', 'patch']));
 app.get('/v2/numbers/:id', v2NumbersId);
 app.delete('/v2/numbers/:id', v2NumbersIdDelete);
 app.patch('/v2/numbers/:id', v2NumbersIdPatch);
-
-app.use('/echo', echo);
 
 const port = process.env.PORT || 3001;
 app.listen(port, err => {
