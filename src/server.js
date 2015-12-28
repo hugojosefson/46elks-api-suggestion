@@ -31,30 +31,30 @@ app.use('/echo', echo);
 app.use('/version', allowMethods(['options', 'get']));
 app.get('/version', version);
 
-app.use('/', allowMethods(['options', 'get']));
-app.get('/', (req, res) => res.redirect(302, 'v2'));
-
-app.use('/v2', allowMethods(['options', 'get']));
-app.get('/v2', v2);
-
-app.use('/v2/me', allowMethods(['options', 'get']));
-app.get('/v2/me', v2Me);
-
-app.use('/v2/me/numbers', allowMethods(['options', 'get', 'post']));
-app.get('/v2/me/numbers', v2MeNumbers);
-app.post('/v2/me/numbers', v2MeNumbersPost);
-
 app.use('/v2/me/numbers/:id', allowMethods(['options', 'get', 'delete', 'patch']));
 app.get('/v2/me/numbers/:id', v2MeNumbersId);
 app.delete('/v2/me/numbers/:id', v2MeNumbersIdDelete);
 app.patch('/v2/me/numbers/:id', v2MeNumbersIdPatch);
 
+app.use('/v2/me/numbers', allowMethods(['options', 'get', 'post']));
+app.get('/v2/me/numbers', v2MeNumbers);
+app.post('/v2/me/numbers', v2MeNumbersPost);
+
+app.use('/v2/me/sms/:id', allowMethods(['options', 'get']));
+app.get('/v2/me/sms/:id', v2MeSmsId);
+
 app.use('/v2/me/sms', allowMethods(['options', 'get', 'post']));
 app.get('/v2/me/sms', v2MeSms);
 app.post('/v2/me/sms', v2MeSmsPost);
 
-app.use('/v2/me/sms/:id', allowMethods(['options', 'get']));
-app.get('/v2/me/sms/:id', v2MeSmsId);
+app.use('/v2/me', allowMethods(['options', 'get']));
+app.get('/v2/me', v2Me);
+
+app.use('/v2', allowMethods(['options', 'get']));
+app.get('/v2', v2);
+
+app.use('/', allowMethods(['options', 'get']));
+app.get('/', (req, res) => res.redirect(302, 'v2'));
 
 const port = process.env.PORT || 3001;
 app.listen(port, err => {
