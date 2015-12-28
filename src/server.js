@@ -15,6 +15,9 @@ import v2MeSms from './routes/v2/me/sms';
 import v2MeSmsPost from './routes/v2/me/sms-post';
 import v2MeSmsId from './routes/v2/me/sms/id';
 import v2MeSmsIdDelete from './routes/v2/me/sms/id-delete';
+import v2MeCalls from './routes/v2/me/calls';
+import v2MeCallsId from './routes/v2/me/calls/id';
+import v2MeCallsIdDelete from './routes/v2/me/calls/id-delete';
 
 const app = express();
 app.set('json spaces', 2);
@@ -48,6 +51,13 @@ app.delete('/v2/me/sms/:id', v2MeSmsIdDelete);
 app.use('/v2/me/sms', allowMethods(['options', 'get', 'post']));
 app.get('/v2/me/sms', v2MeSms);
 app.post('/v2/me/sms', v2MeSmsPost);
+
+app.use('/v2/me/calls/:id', allowMethods(['options', 'get', 'delete']));
+app.get('/v2/me/calls/:id', v2MeCallsId);
+app.delete('/v2/me/calls/:id', v2MeCallsIdDelete);
+
+app.use('/v2/me/calls', allowMethods(['options', 'get']));
+app.get('/v2/me/calls', v2MeCalls);
 
 app.use('/v2/me', allowMethods(['options', 'get']));
 app.get('/v2/me', v2Me);
