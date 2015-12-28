@@ -16,6 +16,7 @@ import v2MeSmsPost from './routes/v2/me/sms-post';
 import v2MeSmsId from './routes/v2/me/sms/id';
 import v2MeSmsIdDelete from './routes/v2/me/sms/id-delete';
 import v2MeCalls from './routes/v2/me/calls';
+import v2MeCallsPost from './routes/v2/me/calls-post';
 import v2MeCallsId from './routes/v2/me/calls/id';
 import v2MeCallsIdDelete from './routes/v2/me/calls/id-delete';
 
@@ -56,8 +57,9 @@ app.use('/v2/me/calls/:id', allowMethods(['options', 'get', 'delete']));
 app.get('/v2/me/calls/:id', v2MeCallsId);
 app.delete('/v2/me/calls/:id', v2MeCallsIdDelete);
 
-app.use('/v2/me/calls', allowMethods(['options', 'get']));
+app.use('/v2/me/calls', allowMethods(['options', 'get', 'post']));
 app.get('/v2/me/calls', v2MeCalls);
+app.post('/v2/me/calls', v2MeCallsPost);
 
 app.use('/v2/me', allowMethods(['options', 'get']));
 app.get('/v2/me', v2Me);
