@@ -22,6 +22,7 @@ If you have further suggestions, or like to discuss any change here, feel free t
    * ~~Go through existing API docs, and implement everything as I go along, except callbacks.~~
    * ~~Refactor.~~
    * Implement proxying callbacks. Find all occurrences of it in the current API docs.
+   * Implement client for this API.
  * Structure this document / repo.
 
 ## The suggested changes
