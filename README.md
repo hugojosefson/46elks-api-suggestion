@@ -19,7 +19,7 @@ If you have further suggestions, or like to discuss any change here, feel free t
 ### TODO
 
  * Implement suggested API as an API proxy.
-   * Go through existing API docs, and implement as I go along, except callbacks.
+   * ~~Go through existing API docs, and implement everything as I go along, except callbacks.~~
    * Implement proxying callbacks. Find all occurrences of it in the current API docs.
  * Structure this document / repo.
 
