@@ -1,10 +1,10 @@
 import {expect} from 'chai';
-import {back as transformCallBack} from '../src/transformers/call';
+import {requestTransformer} from '../src/transformers/call';
 
 describe('transform call', () => {
     describe('back', ()=> {
         it('renames voice_start_uri to voice_start', ()=> {
-            const actual = transformCallBack({
+            const actual = requestTransformer({
                 from: 'me',
                 to: 'you',
                 voice_start_uri: 'http://start',
@@ -19,7 +19,7 @@ describe('transform call', () => {
             expect(actual).to.deep.equal(expected);
         });
         it('renames voice_start_action to voice_start, translates to json string', ()=> {
-            const actual = transformCallBack({
+            const actual = requestTransformer({
                 from: 'me',
                 to: 'you',
                 voice_start_action: {play: 'http://play'}

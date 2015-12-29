@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import deletedSmses from '../../../../state/deleted-smses';
 import fullUrl from '../../../../utils/full-url';
-import transformSms from '../../../../transformers/sms';
+import {responseTransformer} from '../../../../transformers/sms';
 import handleRequestError from '../../../../utils/http/handle-request-error';
 
 export default (req, res) => {
@@ -19,7 +19,7 @@ export default (req, res) => {
                 _links: {
                     _self: {href: fullUrl(req)}
                 }
-            }, transformSms(result)));
+            }, responseTransformer(result)));
         }, handleRequestError(res));
     }
 }

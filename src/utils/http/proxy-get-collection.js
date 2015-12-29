@@ -10,7 +10,7 @@ export default ({
     uri,
     name = uri.match(lastPathSegment())[1].toLowerCase(),
     filter = () => true,
-    transformer = _.identity
+    responseTransformer = _.identity
     }) => (req, res) => {
     request({
         uri,
@@ -27,7 +27,7 @@ export default ({
                     _self: {href: fullUrl(req, encodeURIComponent(sms.id))}
                 }
             }, sms))
-            .map(transformer)
+            .map(responseTransformer)
             .value();
 
         const _links = {
