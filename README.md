@@ -22,19 +22,19 @@ If you have further suggestions, or like to discuss any change here, feel free t
     * ~~Go through existing API docs, and implement everything as I go along, except callbacks.~~
     * ~~Refactor.~~
     * Implement proxying callbacks. ~~Find all occurrences of it in the current API docs.~~
-      * `number`
+      * `POST,GET,PATCH /v2/me/numbers`
         * `sms_uri`
         * `mms_uri`
         * `voice_start_uri`
-          * `action:next` recursively
-          * `action:record`
-          * `action:recordcall`
-          * `action:play`
+          * `next` recursively
+          * `record`
+          * `record_call`
+          * `play`
              * prefix `sound/*` to make them proper uris
              * prefix `local/*` to make them proper uris
-      * `sms`
+      * `POST,GET /v2/me/sms`
         * `delivery_report_uri`
-      * `calls`
+      * `POST,GET /v2/me/calls`
         * `voice_start_uri`
         * `voice_end_uri`
     * Add IP addresses endpoint.
