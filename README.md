@@ -38,8 +38,8 @@ If you have further suggestions, or like to discuss any change here, feel free t
         * `voice_start_uri`
         * `voice_end_uri`
     * Add IP addresses endpoint.
-      * Calculate outgoing IP address of current server by bouncing off of a different server.
-      * Get current outgoing IP address of 46elks by sending an SMS to `+46700000000` with `delivery_report_uri`.
+      * Calculate outgoing IP address of current server by bouncing off of [https://api.ipify.org/](https://api.ipify.org/).
+      * Get current outgoing IP address of 46elks by sending an SMS to `+46700000000` with `delivery_report_uri` pointing back to us with a temporary random code.
     * Implement client for this API.
   * Structure this document / repo.
 
