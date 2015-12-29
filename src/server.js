@@ -35,8 +35,10 @@ app.set('case sensitive routing', true);
 app.use('/health', allowMethods(['options', 'get']));
 app.get('/health', health);
 
-app.use('/echo', allowMethods(['options', 'get']));
-app.use('/echo', echo);
+app.use('*/echo', allowMethods(['options', 'get', 'post', 'patch']));
+app.use('*/echo/*', allowMethods(['options', 'get', 'post', 'patch']));
+app.use('*/echo', echo);
+app.use('*/echo/*', echo);
 
 app.use('/version', allowMethods(['options', 'get']));
 app.get('/version', version);
