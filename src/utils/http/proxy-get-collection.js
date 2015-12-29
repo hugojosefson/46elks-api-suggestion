@@ -1,7 +1,7 @@
 import request from 'request-promise';
 import _ from 'lodash';
 
-import fullUrl from '../full-url';
+import baseUri from '../base-uri';
 import handleRequestError from './handle-request-error';
 
 const lastPathSegment = () => /\/([^/]+)\/?$/;
@@ -23,20 +23,20 @@ export default ({
         .then(result => {
             const items = _(result.data)
                 .filter(filter)
-                .map(sms => _.assign({
+                .map(item => _.assign({
                     _links: {
-                        _self: {href: fullUrl(req, encodeURIComponent(sms.id))}
+                        _self: {href: baseUri(req) + `/v2/me/${name}/` + encodeURIComponent(item.id)}
                     }
-                }, sms))
+                }, item))
                 .map(responseTransformer)
                 .value();
 
             const _links = {
-                _self: {href: fullUrl(req)}
+                _self: {href: baseUri(req) + req.originalUrl} // includes any query params
             };
 
             if (result.next) {
-                _links.next = {href: fullUrl(req, '?start=' + encodeURIComponent(result.next))};
+                _links.next = {href: baseUri(req) + `/v2/me/${name}?start=` + encodeURIComponent(result.next)};
             }
 
             res.type('application/hal+json').send({

@@ -2,7 +2,7 @@ import request from 'request-promise';
 import _ from 'lodash';
 
 import deletedSubaccounts from '../../../../state/deleted-subaccounts';
-import fullUrl from '../../../../utils/full-url';
+import baseUri from '../../../../utils/base-uri';
 import handleRequestError from '../../../../utils/http/handle-request-error';
 
 export default (req, res) => {
@@ -16,7 +16,7 @@ export default (req, res) => {
         }).then(result => {
             res.type('application/hal+json').send(_.assign({
                 _links: {
-                    _self: {href: fullUrl(req)}
+                    _self: {href: baseUri(req) + '/v2/me/subaccounts/' + encodeURIComponent(req.params.id)}
                 }
             }, result));
         }, handleRequestError(res));

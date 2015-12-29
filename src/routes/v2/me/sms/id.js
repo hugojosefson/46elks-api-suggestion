@@ -2,7 +2,7 @@ import request from 'request-promise';
 import _ from 'lodash';
 
 import deletedSmses from '../../../../state/deleted-smses';
-import fullUrl from '../../../../utils/full-url';
+import baseUri from '../../../../utils/base-uri';
 import {responseTransformer} from '../../../../transformers/sms';
 import handleRequestError from '../../../../utils/http/handle-request-error';
 
@@ -17,7 +17,7 @@ export default (req, res) => {
         }).then(result => {
             res.type('application/hal+json').send(_.assign({
                 _links: {
-                    _self: {href: fullUrl(req)}
+                    _self: {href: baseUri(req) + '/v2/me/sms/' + encodeURIComponent(req.params.id)}
                 }
             }, responseTransformer(result)));
         }, handleRequestError(res));

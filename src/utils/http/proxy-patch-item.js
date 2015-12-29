@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {compose} from 'compose-middleware';
 import bodyParser from 'body-parser';
 
-import fullUrl from '../full-url';
+import baseUri from '../base-uri';
 import handleRequestError from './handle-request-error';
 
 const patchItem = ({
@@ -19,12 +19,12 @@ const patchItem = ({
     })
         .then(resultString => {
             const result = JSON.parse(resultString);
-            const uri = fullUrl(req);
+            const itemUri = baseUri(req) + req.originalUrl;
             res
                 .type('application/hal+json')
                 .send(_.assign({
                     _links: {
-                        _self: {href: uri}
+                        _self: {href: itemUri}
                     }
                 }, responseTransformer(result)));
         })

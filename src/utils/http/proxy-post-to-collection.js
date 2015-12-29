@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {compose} from 'compose-middleware';
 import bodyParser from 'body-parser';
 
-import fullUrl from '../full-url';
+import baseUri from '../base-uri';
 import handleRequestError from './handle-request-error';
 
 const postToCollection = ({
@@ -19,7 +19,7 @@ const postToCollection = ({
     })
         .then(resultString => {
             const result = JSON.parse(resultString);
-            const itemUri = fullUrl(req, result.id);
+            const itemUri = baseUri(req) + req.originalUrl + '/' + result.id;
             res
                 .type('application/hal+json')
                 .header('Location', itemUri)
