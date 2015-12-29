@@ -29,9 +29,6 @@ If you have further suggestions, or like to discuss any change here, feel free t
           * `next` recursively
           * `record`
           * `record_call`
-          * `play`
-             * prefix `sound/*` to make them proper uris
-             * prefix `local/*` to make them proper uris
       * `POST,GET /v2/me/sms`
         * `delivery_report_uri`
       * `POST,GET /v2/me/calls`
