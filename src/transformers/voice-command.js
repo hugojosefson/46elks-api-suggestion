@@ -9,15 +9,15 @@ const unproxy = (baseUri) => uri => uri.startsWith(`${baseUri}/v2/proxiedcallbac
 const proxy = (baseUri) => uri => `${baseUri}/v2/proxiedcallbacks/call-callback/${encodeURIComponent(uri)}`;
 
 export const requestTransformer = baseUri => command => isScalar(command) ? command : _(command)
-    .mapValues(onlyForKeys(['next', 'record', 'record_call'], proxy(baseUri)))
     .thru(renameKey('caller_id', 'callerid'))
     .thru(renameKey('record_call', 'recordcall'))
     .mapValues(requestTransformer(baseUri))
+    .mapValues(onlyForKeys(['busy', 'success', 'failed', 'next', 'record', 'recordcall'], proxy(baseUri)))
     .value();
 
 export const responseTransformer = baseUri => command => isScalar(command) ? command : _(command)
     .thru(renameKey('callerid', 'caller_id'))
     .thru(renameKey('recordcall', 'record_call'))
     .mapValues(responseTransformer(baseUri))
-    .mapValues(onlyForKeys(['next', 'record', 'record_call'], unproxy(baseUri)))
+    .mapValues(onlyForKeys(['busy', 'success', 'failed', 'next', 'record', 'record_call'], unproxy(baseUri)))
     .value();
