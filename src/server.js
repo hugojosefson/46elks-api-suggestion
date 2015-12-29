@@ -11,6 +11,11 @@ import v2MeNumbersPost from './routes/v2/me/numbers-post';
 import v2MeNumbersId from './routes/v2/me/numbers/id';
 import v2MeNumbersIdDelete from './routes/v2/me/numbers/id-delete';
 import v2MeNumbersIdPatch from './routes/v2/me/numbers/id-patch';
+import v2MeSubaccounts from './routes/v2/me/subaccounts';
+import v2MeSubaccountsPost from './routes/v2/me/subaccounts-post';
+import v2MeSubaccountsId from './routes/v2/me/subaccounts/id';
+import v2MeSubaccountsIdDelete from './routes/v2/me/subaccounts/id-delete';
+import v2MeSubaccountsIdPatch from './routes/v2/me/subaccounts/id-patch';
 import v2MeSms from './routes/v2/me/sms';
 import v2MeSmsPost from './routes/v2/me/sms-post';
 import v2MeSmsId from './routes/v2/me/sms/id';
@@ -44,6 +49,15 @@ app.patch('/v2/me/numbers/:id', v2MeNumbersIdPatch);
 app.use('/v2/me/numbers', allowMethods(['options', 'get', 'post']));
 app.get('/v2/me/numbers', v2MeNumbers);
 app.post('/v2/me/numbers', v2MeNumbersPost);
+
+app.use('/v2/me/subaccounts/:id', allowMethods(['options', 'get', 'delete', 'patch']));
+app.get('/v2/me/subaccounts/:id', v2MeSubaccountsId);
+app.delete('/v2/me/subaccounts/:id', v2MeSubaccountsIdDelete);
+app.patch('/v2/me/subaccounts/:id', v2MeSubaccountsIdPatch);
+
+app.use('/v2/me/subaccounts', allowMethods(['options', 'get', 'post']));
+app.get('/v2/me/subaccounts', v2MeSubaccounts);
+app.post('/v2/me/subaccounts', v2MeSubaccountsPost);
 
 app.use('/v2/me/sms/:id', allowMethods(['options', 'get', 'delete']));
 app.get('/v2/me/sms/:id', v2MeSmsId);
