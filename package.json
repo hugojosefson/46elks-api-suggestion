@@ -28,6 +28,8 @@
     "lodash": "^3.10.1",
     "nodemon": "^1.8.1",
     "piping": "^0.3.0",
+    "private-ips": "0.0.3",
+    "request": "^2.67.0",
     "request-promise": "^1.0.2"
   },
   "devDependencies": {
