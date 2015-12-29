@@ -4,6 +4,7 @@ import _ from 'lodash';
 import deletedCalls from '../../../state/deleted-calls';
 import fullUrl from '../../../utils/full-url';
 import transformCall from '../../../transformers/call';
+import handleRequestError from '../../../utils/http/handle-request-error';
 
 export default (req, res) => {
     request({
@@ -39,5 +40,5 @@ export default (req, res) => {
                 calls
             }
         });
-    })
-}
+    }, handleRequestError(res));
+};

@@ -2,6 +2,7 @@ import request from 'request-promise';
 import _ from 'lodash';
 
 import fullUrl from '../../utils/full-url';
+import handleRequestError from '../../utils/http/handle-request-error';
 
 export default (req, res) => {
     request({
@@ -17,5 +18,5 @@ export default (req, res) => {
                 calls: {href: fullUrl(req, 'calls')}
             }
         }, result));
-    })
-}
+    }, handleRequestError(res));
+};

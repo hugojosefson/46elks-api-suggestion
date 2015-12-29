@@ -2,6 +2,7 @@ import request from 'request-promise';
 import _ from 'lodash';
 
 import deletedCalls from '../../../../state/deleted-calls';
+import handleRequestError from '../../../../utils/http/handle-request-error';
 
 /**
  * Makes it look like the Call is DELETE'd in this API.
@@ -17,14 +18,6 @@ export default (req, res) => {
         }).then(() => {
             deletedCalls.add(req.params.id);
             res.sendStatus(204);
-        }, error => {
-            const body = error && error.response && error.response.body;
-            const statusCode = error && error.response && error.response.statusCode || 500;
-            if (body) {
-                res.status(statusCode).send(body);
-            } else {
-                res.sendStatus(statusCode);
-            }
-        });
+        }, handleRequestError(res));
     }
 }

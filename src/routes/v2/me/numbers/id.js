@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import fullUrl from '../../../../utils/full-url';
 import transformNumber from '../../../../transformers/number';
+import handleRequestError from '../../../../utils/http/handle-request-error';
 
 export default (req, res) => {
     request({
@@ -15,13 +16,5 @@ export default (req, res) => {
                 _self: {href: fullUrl(req)}
             }
         }, transformNumber(result)));
-    }, error => {
-        const body = error && error.response && error.response.body;
-        const statusCode = error && error.response && error.response.statusCode || 500;
-        if (body) {
-            res.status(statusCode).send(body);
-        } else {
-            res.sendStatus(statusCode);
-        }
-    });
+    }, handleRequestError(res));
 }

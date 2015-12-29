@@ -4,6 +4,7 @@ import _ from 'lodash';
 import deletedSmses from '../../../../state/deleted-smses';
 import fullUrl from '../../../../utils/full-url';
 import transformSms from '../../../../transformers/sms';
+import handleRequestError from '../../../../utils/http/handle-request-error';
 
 export default (req, res) => {
     if (deletedSmses.has(req.params.id)) {
@@ -19,14 +20,6 @@ export default (req, res) => {
                     _self: {href: fullUrl(req)}
                 }
             }, transformSms(result)));
-        }, error => {
-            const body = error && error.response && error.response.body;
-            const statusCode = error && error.response && error.response.statusCode || 500;
-            if (body) {
-                res.status(statusCode).send(body);
-            } else {
-                res.sendStatus(statusCode);
-            }
-        });
+        }, handleRequestError(res));
     }
 }

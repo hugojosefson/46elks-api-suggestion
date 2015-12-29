@@ -4,6 +4,7 @@ import _ from 'lodash';
 import deletedSmses from '../../../state/deleted-smses';
 import fullUrl from '../../../utils/full-url';
 import transformSms from '../../../transformers/sms';
+import handleRequestError from '../../../utils/http/handle-request-error';
 
 export default (req, res) => {
     request({
@@ -39,5 +40,5 @@ export default (req, res) => {
                 smses
             }
         });
-    })
-}
+    }, handleRequestError(res));
+};

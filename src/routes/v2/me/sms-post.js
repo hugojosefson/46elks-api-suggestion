@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 
 import {default as transformSms, back as transformSmsBack} from '../../../transformers/sms';
 import fullUrl from '../../../utils/full-url';
+import handleRequestError from '../../../utils/http/handle-request-error';
 
 const sendSms = (req, res) => {
     request({
@@ -23,19 +24,7 @@ const sendSms = (req, res) => {
                     _self: {href: uri}
                 }
             }, transformSms(result)));
-    }, error => {
-        const body = error && error.response && error.response.body;
-        if (body && (body.startsWith('Missing key') || /^Key .*? missing$/.test(body))) {
-            res.status(400).type('text').send(body);
-        } else {
-            const statusCode = error && error.response && error.response.statusCode || 500;
-            if (body) {
-                res.status(statusCode).send(body);
-            } else {
-                res.sendStatus(statusCode);
-            }
-        }
-    });
+    }, handleRequestError(res));
 };
 
 export default compose([

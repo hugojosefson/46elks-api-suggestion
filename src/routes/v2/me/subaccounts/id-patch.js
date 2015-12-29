@@ -4,6 +4,7 @@ import {compose} from 'compose-middleware';
 import bodyParser from 'body-parser';
 
 import fullUrl from '../../../../utils/full-url';
+import handleRequestError from '../../../../utils/http/handle-request-error';
 
 const patchSubaccount = (req, res) => {
     request({
@@ -21,15 +22,7 @@ const patchSubaccount = (req, res) => {
                     _self: {href: uri}
                 }
             }, result));
-    }, error => {
-        const body = error && error.response && error.response.body;
-        const statusCode = error && error.response && error.response.statusCode || 500;
-        if (body) {
-            res.status(statusCode).send(body);
-        } else {
-            res.sendStatus(statusCode);
-        }
-    })
+    }, handleRequestError(res))
 };
 
 export default compose([

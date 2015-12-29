@@ -2,6 +2,7 @@ import request from 'request-promise';
 import _ from 'lodash';
 
 import deletedSubaccounts from '../../../../state/deleted-subaccounts';
+import handleRequestError from '../../../../utils/http/handle-request-error';
 
 /**
  * Sets usagelimit to 0, and makes it look like the Subaccount is DELETE'd in this API.
@@ -18,14 +19,6 @@ export default (req, res) => {
         }).then(() => {
             deletedSubaccounts.add(req.params.id);
             res.sendStatus(204);
-        }, error => {
-            const body = error && error.response && error.response.body;
-            const statusCode = error && error.response && error.response.statusCode || 500;
-            if (body) {
-                res.status(statusCode).send(body);
-            } else {
-                res.sendStatus(statusCode);
-            }
-        });
+        }, handleRequestError(res));
     }
 }

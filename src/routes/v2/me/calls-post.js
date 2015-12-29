@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 
 import {default as transformCall, back as transformCallBack} from '../../../transformers/call';
 import fullUrl from '../../../utils/full-url';
+import handleRequestError from '../../../utils/http/handle-request-error';
 
 const startCall = (req, res) => {
     request({
@@ -23,19 +24,7 @@ const startCall = (req, res) => {
                     _self: {href: uri}
                 }
             }, transformCall(result)));
-    }, error => {
-        const body = error && error.response && error.response.body;
-        if (body && (body.startsWith('Missing key') || /^Key .*? missing$/.test(body))) {
-            res.status(400).type('text').send(body);
-        } else {
-            const statusCode = error && error.response && error.response.statusCode || 500;
-            if (body) {
-                res.status(statusCode).send(body);
-            } else {
-                res.sendStatus(statusCode);
-            }
-        }
-    });
+    }, handleRequestError(res));
 };
 
 export default compose([
