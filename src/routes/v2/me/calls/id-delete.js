@@ -15,9 +15,11 @@ export default (req, res) => {
             uri: 'https://api.46elks.com/a1/Calls/' + encodeURIComponent(req.params.id),
             headers: _.pick(req.headers, 'authorization'),
             json: true
-        }).then(() => {
-            deletedCalls.add(req.params.id);
-            res.sendStatus(204);
-        }, handleRequestError(res));
+        })
+            .then(() => {
+                deletedCalls.add(req.params.id);
+                res.sendStatus(204);
+            })
+            .catch(handleRequestError(res));
     }
 };

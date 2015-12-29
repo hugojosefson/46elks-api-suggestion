@@ -14,12 +14,12 @@ export default (req, res) => {
             uri: 'https://api.46elks.com/a1/SMS/' + encodeURIComponent(req.params.id),
             headers: _.pick(req.headers, 'authorization'),
             json: true
-        }).then(result => {
-            res.type('application/hal+json').send(_.assign({
-                _links: {
-                    _self: {href: baseUri(req) + '/v2/me/sms/' + encodeURIComponent(req.params.id)}
-                }
-            }, responseTransformer(result)));
-        }, handleRequestError(res));
+        })
+            .then(result => {
+                res
+                    .type('application/hal+json')
+                    .send(responseTransformer(baseUri(req))(result));
+            })
+            .catch(handleRequestError(res));
     }
 };

@@ -9,7 +9,7 @@ import handleRequestError from './handle-request-error';
 const postToCollection = ({
     uri,
     requestTransformer = _.identity,
-    responseTransformer = _.identity
+    responseTransformer = () => _.identity
     }) => (req, res) => {
     request({
         uri,
@@ -19,15 +19,11 @@ const postToCollection = ({
     })
         .then(resultString => {
             const result = JSON.parse(resultString);
-            const itemUri = baseUri(req) + req.originalUrl + '/' + result.id;
+            const entity = responseTransformer(baseUri(req))(result);
             res
                 .type('application/hal+json')
-                .header('Location', itemUri)
-                .send(_.assign({
-                    _links: {
-                        _self: {href: itemUri}
-                    }
-                }, responseTransformer(result)));
+                .header('Location', entity._links.self.href)
+                .send(entity);
         })
         .catch(handleRequestError(res));
 };

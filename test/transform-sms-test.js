@@ -1,7 +1,9 @@
+import _ from 'lodash';
 import {expect} from 'chai';
 import {requestTransformer, responseTransformer} from '../src/transformers/sms';
 
 const MMS = {
+    id: 'ID',
     from: 'me',
     to: 'you',
     message: 'hello',
@@ -15,6 +17,7 @@ const MMS = {
 };
 
 const ELKS_MMS = {
+    id: 'ID',
     from: 'me',
     to: 'you',
     message: 'hello',
@@ -26,6 +29,7 @@ const ELKS_MMS = {
 };
 
 const SMS = {
+    id: 'ID',
     from: 'me',
     to: 'you',
     message: 'hello'
@@ -33,7 +37,7 @@ const SMS = {
 
 describe('transform sms', () => {
 
-    describe('back', ()=> {
+    describe('request', ()=> {
         it('transforms correctly', ()=> {
             const actual = requestTransformer(MMS);
             const expected = ELKS_MMS;
@@ -41,15 +45,24 @@ describe('transform sms', () => {
         });
     });
 
-    it('leaves no-image, no-flash sms alone', ()=> {
-        const actual = responseTransformer(SMS);
-        const expected = SMS;
-        expect(actual).to.deep.equal(expected);
+    describe('response', () => {
+        it('leaves no-image, no-flash sms alone', ()=> {
+            const actual = responseTransformer('BASE_URI')(SMS);
+            const expected = _(SMS)
+                .assign({_links: {self: {href: 'BASE_URI/v2/me/sms/ID'}}})
+                .omit('id')
+                .value();
+            expect(actual).to.deep.equal(expected);
+        });
+
+        it('transforms correctly', ()=> {
+            const actual = responseTransformer('BASE_URI')(ELKS_MMS);
+            const expected = _(MMS)
+                .assign({_links: {self: {href: 'BASE_URI/v2/me/sms/ID'}}})
+                .omit('id')
+                .value();
+            expect(actual).to.deep.equal(expected);
+        });
     });
 
-    it('transforms correctly', ()=> {
-        const actual = responseTransformer(ELKS_MMS);
-        const expected = MMS;
-        expect(actual).to.deep.equal(expected);
-    });
 });

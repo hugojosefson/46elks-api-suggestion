@@ -10,7 +10,7 @@ export default ({
     uri,
     name = uri.match(lastPathSegment())[1].toLowerCase(),
     filter = () => true,
-    responseTransformer = _.identity
+    responseTransformer = () => _.identity
     }) => (req, res) => {
     request({
         uri,
@@ -23,12 +23,7 @@ export default ({
         .then(result => {
             const items = _(result.data)
                 .filter(filter)
-                .map(item => _.assign({
-                    _links: {
-                        _self: {href: baseUri(req) + `/v2/me/${name}/` + encodeURIComponent(item.id)}
-                    }
-                }, item))
-                .map(responseTransformer)
+                .map(responseTransformer(baseUri(req)))
                 .value();
 
             const _links = {

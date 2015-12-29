@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import renameKey from '../utils/rename-key';
 import onlyForKey from '../utils/only-for-key';
+import addSelfLink from '../utils/add-self-link';
 
 export const requestTransformer = number => _(number)
     .mapValues(onlyForKey('voice_start_action', JSON.stringify))
@@ -11,7 +12,8 @@ export const requestTransformer = number => _(number)
     .thru(renameKey('voice_start_action', 'voice_start'))
     .value();
 
-export const responseTransformer = number => _(number)
+export const responseTransformer = baseUri => number => _(number)
+    .thru(addSelfLink(baseUri + '/v2/me/numbers'))
     .map((value, key) => {
         if (key === 'voice_start') {
             try {

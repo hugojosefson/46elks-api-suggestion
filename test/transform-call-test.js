@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import {requestTransformer} from '../src/transformers/call';
 
 describe('transform call', () => {
-    describe('back', ()=> {
+    describe('request', ()=> {
         it('renames voice_start_uri to voice_start', ()=> {
             const actual = requestTransformer({
                 from: 'me',

@@ -11,7 +11,9 @@ export default (req, res) => {
         form: {
             active: 'no'
         }
-    }).then(() => {
-        res.sendStatus(204);
-    }, handleRequestError(res));
+    })
+        .then(() => {
+            res.sendStatus(204);
+        })
+        .catch(handleRequestError(res));
 };

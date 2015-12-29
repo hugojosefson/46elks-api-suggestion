@@ -16,9 +16,11 @@ export default (req, res) => {
             method: 'post',
             headers: _.pick(req.headers, 'authorization'),
             form: {usagelimit: 0}
-        }).then(() => {
-            deletedSubaccounts.add(req.params.id);
-            res.sendStatus(204);
-        }, handleRequestError(res));
+        })
+            .then(() => {
+                deletedSubaccounts.add(req.params.id);
+                res.sendStatus(204);
+            })
+            .catch(handleRequestError(res));
     }
 };
