@@ -27,4 +27,4 @@ export default mms => {
     } else {
         return _.clone(mms);
     }
-}
+};

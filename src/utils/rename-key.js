@@ -10,4 +10,4 @@ export default (fromKey, toKey) => object => {
     } else {
         return _.assign({}, object);
     }
-}
+};

@@ -17,4 +17,4 @@ export default (req, res) => {
             }
         }, responseTransformer(result)));
     }, handleRequestError(res));
-}
+};

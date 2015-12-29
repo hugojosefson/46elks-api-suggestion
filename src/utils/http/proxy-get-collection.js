@@ -19,31 +19,33 @@ export default ({
             start: req.query.start
         },
         json: true
-    }).then(result => {
-        const items = _(result.data)
-            .filter(filter)
-            .map(sms => _.assign({
-                _links: {
-                    _self: {href: fullUrl(req, encodeURIComponent(sms.id))}
-                }
-            }, sms))
-            .map(responseTransformer)
-            .value();
+    })
+        .then(result => {
+            const items = _(result.data)
+                .filter(filter)
+                .map(sms => _.assign({
+                    _links: {
+                        _self: {href: fullUrl(req, encodeURIComponent(sms.id))}
+                    }
+                }, sms))
+                .map(responseTransformer)
+                .value();
 
-        const _links = {
-            _self: {href: fullUrl(req)}
-        };
+            const _links = {
+                _self: {href: fullUrl(req)}
+            };
 
-        if (result.next) {
-            _links.next = {href: fullUrl(req, '?start=' + encodeURIComponent(result.next))}
-        }
-
-        res.type('application/hal+json').send({
-            _links,
-            count: items.length,
-            _embedded: {
-                [name]: items
+            if (result.next) {
+                _links.next = {href: fullUrl(req, '?start=' + encodeURIComponent(result.next))};
             }
-        });
-    }, handleRequestError(res));
+
+            res.type('application/hal+json').send({
+                _links,
+                count: items.length,
+                _embedded: {
+                    [name]: items
+                }
+            });
+        })
+        .catch(handleRequestError(res));
 };

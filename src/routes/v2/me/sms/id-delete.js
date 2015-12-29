@@ -20,4 +20,4 @@ export default (req, res) => {
             res.sendStatus(204);
         }, handleRequestError(res));
     }
-}
+};

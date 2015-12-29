@@ -14,4 +14,4 @@ export default mms => {
         delete result.images;
     }
     return result;
-}
+};

@@ -1,7 +1,6 @@
 import request from 'request-promise';
 import _ from 'lodash';
 
-import fullUrl from '../../../../utils/full-url';
 import handleRequestError from '../../../../utils/http/handle-request-error';
 
 export default (req, res) => {

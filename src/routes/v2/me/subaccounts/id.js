@@ -21,4 +21,4 @@ export default (req, res) => {
             }, result));
         }, handleRequestError(res));
     }
-}
+};

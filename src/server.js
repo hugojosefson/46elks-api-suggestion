@@ -84,7 +84,7 @@ app.get('/v2', v2);
 app.use('/', allowMethods(['options', 'get']));
 app.get('/', (req, res) => res.redirect(302, 'v2'));
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001; //eslint-disable-line no-process-env
 app.listen(port, err => {
     if (err) {
         console.error(err);
