@@ -28,7 +28,7 @@ import v2MeCallsIdDelete from './routes/v2/me/calls/id-delete';
 import v2ProxiedcallbacksRequireAllowedDestinationUri from './routes/v2/proxiedcallbacks/require-allowed-destination-uri';
 import v2ProxiedcallbacksSms from './routes/v2/proxiedcallbacks/sms';
 import v2ProxiedcallbacksVoiceStart from './routes/v2/proxiedcallbacks/voice-start';
-import v2ProxiedcallbacksRecording from './routes/v2/proxiedcallbacks/recording';
+import v2ProxiedcallbacksCallCallback from './routes/v2/proxiedcallbacks/call-callback';
 
 const app = express();
 app.set('json spaces', 2);
@@ -91,7 +91,7 @@ app.use('/v2/proxiedcallbacks/*', bodyParser.json());
 app.use('/v2/proxiedcallbacks/sms/:destinationUri', v2ProxiedcallbacksSms);
 app.use('/v2/proxiedcallbacks/sms_delivery_report/:destinationUri', v2ProxiedcallbacksSms);
 app.use('/v2/proxiedcallbacks/voice_start/:destinationUri', v2ProxiedcallbacksVoiceStart);
-app.use('/v2/proxiedcallbacks/recording/:destinationUri', v2ProxiedcallbacksRecording);
+app.use('/v2/proxiedcallbacks/call-callback/:destinationUri', v2ProxiedcallbacksCallCallback);
 
 app.use('/v2', allowMethods(['options', 'get']));
 app.get('/v2', v2);

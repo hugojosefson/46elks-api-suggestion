@@ -26,11 +26,11 @@ describe('transform voice-command', () => {
         }));
         it('renames record_call to recordcall, and proxies URI', ()=> expectDeepEqual({
             actual: requestTransformer('http://BASE_URI')({record_call: 'http://recorded'}),
-            expected: {recordcall: 'http://BASE_URI/v2/proxiedcallbacks/recording/http%3A%2F%2Frecorded'}
+            expected: {recordcall: 'http://BASE_URI/v2/proxiedcallbacks/call-callback/http%3A%2F%2Frecorded'}
         }));
         it('proxies record URI', ()=> expectDeepEqual({
             actual: requestTransformer('http://BASE_URI')({record: 'http://recorded'}),
-            expected: {record: 'http://BASE_URI/v2/proxiedcallbacks/recording/http%3A%2F%2Frecorded'}
+            expected: {record: 'http://BASE_URI/v2/proxiedcallbacks/call-callback/http%3A%2F%2Frecorded'}
         }));
         it('renames caller_id to callerid', ()=> expectDeepEqual({
             actual: requestTransformer('http://BASE_URI')({caller_id: '+467000'}),
@@ -47,12 +47,12 @@ describe('transform voice-command', () => {
             actual: responseTransformer('http://BASE_URI')({recordcall: 'http://recorded'}),
             expected: {record_call: 'http://recorded'}
         }));
-        it('unproxies recordcall if starts with baseUri/v2/proxiedcallbacks/recording/', ()=> expectDeepEqual({
-            actual: responseTransformer('http://BASE_URI')({recordcall: 'http://BASE_URI/v2/proxiedcallbacks/recording/http%3A%2F%2Frecorded'}),
+        it('unproxies recordcall if starts with baseUri/v2/proxiedcallbacks/call-callback/', ()=> expectDeepEqual({
+            actual: responseTransformer('http://BASE_URI')({recordcall: 'http://BASE_URI/v2/proxiedcallbacks/call-callback/http%3A%2F%2Frecorded'}),
             expected: {record_call: 'http://recorded'}
         }));
-        it('unproxies record if starts with baseUri/v2/proxiedcallbacks/recording/', ()=> expectDeepEqual({
-            actual: responseTransformer('http://BASE_URI')({record: 'http://BASE_URI/v2/proxiedcallbacks/recording/http%3A%2F%2Frecorded'}),
+        it('unproxies record if starts with baseUri/v2/proxiedcallbacks/call-callback/', ()=> expectDeepEqual({
+            actual: responseTransformer('http://BASE_URI')({record: 'http://BASE_URI/v2/proxiedcallbacks/call-callback/http%3A%2F%2Frecorded'}),
             expected: {record: 'http://recorded'}
         }));
         it('renames callerid to caller_id', ()=> expectDeepEqual({

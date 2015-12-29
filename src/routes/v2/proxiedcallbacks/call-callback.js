@@ -1,7 +1,7 @@
 import request from 'request';
 
 import baseUri from '../../../utils/base-uri';
-import {responseTransformer} from '../../../transformers/recording';
+import {responseTransformer} from '../../../transformers/call-callback';
 
 export default (req, res) => {
     const {destinationUri} = req.params;

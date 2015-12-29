@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {responseTransformer} from '../src/transformers/recording';
+import {responseTransformer} from '../src/transformers/call-callback';
 
 const expectDeepEqual = ({actual, expected}) => expect(actual).to.deep.equal(expected);
 
@@ -17,7 +17,7 @@ const DUMMY_STRUCTURE = {
     }
 };
 
-describe('transform recording', () => {
+describe('transform call-callback (recording etc)', () => {
 
     describe('response', ()=> {
         it('keeps object structure intact', ()=> expectDeepEqual({
