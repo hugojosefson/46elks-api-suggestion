@@ -14,7 +14,6 @@ const startCall = (req, res) => {
         form: transformCallBack(req.body)
     }).then(resultString => {
         const result = JSON.parse(resultString);
-        console.log(result);
         const uri = fullUrl(req, result.id);
         res
             .type('application/hal+json')
@@ -25,7 +24,6 @@ const startCall = (req, res) => {
                 }
             }, transformCall(result)));
     }, error => {
-        console.error(error);
         const body = error && error.response && error.response.body;
         if (body && (body.startsWith('Missing key') || /^Key .*? missing$/.test(body))) {
             res.status(400).type('text').send(body);

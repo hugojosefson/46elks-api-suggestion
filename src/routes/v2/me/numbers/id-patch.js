@@ -14,7 +14,6 @@ const patchNumber = (req, res) => {
         form: transformNumberBack(req.body)
     }).then(resultString => {
         const result = JSON.parse(resultString);
-        console.log(result);
         const uri = fullUrl(req);
         res
             .type('application/hal+json')
@@ -24,7 +23,6 @@ const patchNumber = (req, res) => {
                 }
             }, transformNumber(result)));
     }, error => {
-        console.error(error);
         const body = error && error.response && error.response.body;
         if (body === 'Invalid number id') {
             res.sendStatus(404);
