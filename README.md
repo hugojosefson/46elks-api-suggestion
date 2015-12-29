@@ -21,7 +21,25 @@ If you have further suggestions, or like to discuss any change here, feel free t
  * Implement suggested API as an API proxy.
    * ~~Go through existing API docs, and implement everything as I go along, except callbacks.~~
    * ~~Refactor.~~
-   * Implement proxying callbacks. Find all occurrences of it in the current API docs.
+   * Implement proxying callbacks. ~~Find all occurrences of it in the current API docs.~~
+     * `number`
+       * `sms_uri`
+       * `mms_uri`
+       * `voice_start_uri`
+         * `action:next` recursively
+         * `action:record`
+         * `action:recordcall`
+         * `action:play`
+            * prefix `sound/*` to make them proper uris
+            * prefix `local/*` to make them proper uris
+     * `sms`
+       * `delivery_report_uri`
+     * `calls`
+       * `voice_start_uri`
+       * `voice_end_uri`
+   * Add IP addresses endpoint.
+     * Calculate outgoing IP address of current server by bouncing off of a different server.
+     * Get current outgoing IP address of 46elks by sending an SMS to `+46700000000` with `delivery_report_uri`.
    * Implement client for this API.
  * Structure this document / repo.
 
