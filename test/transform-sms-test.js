@@ -7,6 +7,7 @@ const MMS = {
     to: 'you',
     message: 'hello',
     flash: true,
+    delivery_report_uri: 'https://delivery',
     images: [
         'first',
         'second',
@@ -19,6 +20,7 @@ const ELKS_MMS = {
     to: 'you',
     message: 'hello',
     flashsms: 'yes',
+    whendelivered: 'https://delivery',
     image: 'first',
     image2: 'second',
     image3: 'third'
