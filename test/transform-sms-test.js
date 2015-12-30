@@ -22,7 +22,7 @@ const ELKS_MMS = {
     to: 'you',
     message: 'hello',
     flashsms: 'yes',
-    whendelivered: 'https://delivery',
+    whendelivered: 'http://BASE_URI/v2/proxiedcallbacks/sms-delivery-report/https%3A%2F%2Fdelivery',
     image: 'first',
     image2: 'second',
     image3: 'third'
@@ -47,18 +47,18 @@ describe('transform sms', () => {
 
     describe('response', () => {
         it('leaves no-image, no-flash sms alone', ()=> {
-            const actual = responseTransformer('BASE_URI')(SMS);
+            const actual = responseTransformer('http://BASE_URI')(SMS);
             const expected = _(SMS)
-                .assign({_links: {self: {href: 'BASE_URI/v2/me/sms/ID'}}})
+                .assign({_links: {self: {href: 'http://BASE_URI/v2/me/sms/ID'}}})
                 .omit('id')
                 .value();
             expect(actual).to.deep.equal(expected);
         });
 
         it('transforms correctly', ()=> {
-            const actual = responseTransformer('BASE_URI')(ELKS_MMS);
+            const actual = responseTransformer('http://BASE_URI')(ELKS_MMS);
             const expected = _(MMS)
-                .assign({_links: {self: {href: 'BASE_URI/v2/me/sms/ID'}}})
+                .assign({_links: {self: {href: 'http://BASE_URI/v2/me/sms/ID'}}})
                 .omit('id')
                 .value();
             expect(actual).to.deep.equal(expected);

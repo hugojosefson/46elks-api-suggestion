@@ -1,5 +1,5 @@
-export default baseUri => uri => {
-    const proxyPrefix = `${baseUri}/v2/proxiedcallbacks/call-callback/`;
+export const unproxyForType = type => baseUri => uri => {
+    const proxyPrefix = `${baseUri}/v2/proxiedcallbacks/${type}/`;
 
     if (uri.startsWith(proxyPrefix)) {
         const destinationUri = uri.substring(proxyPrefix.length);
@@ -8,3 +8,5 @@ export default baseUri => uri => {
         return uri;
     }
 };
+
+export default unproxyForType('call-callback');

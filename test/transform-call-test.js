@@ -3,7 +3,7 @@ import {requestTransformer} from '../src/transformers/call';
 
 describe('transform call', () => {
     describe('request', ()=> {
-        it('renames voice_start_uri to voice_start', ()=> {
+        it('renames voice_start_uri and voice_end_uri to voice_start and whenhangup, and proxies the URIs', ()=> {
             const actual = requestTransformer('http://BASE_URI')({
                 from: 'me',
                 to: 'you',
@@ -13,8 +13,8 @@ describe('transform call', () => {
             const expected = {
                 from: 'me',
                 to: 'you',
-                voice_start: 'http://start',
-                whenhangup: 'http://end'
+                voice_start: 'http://BASE_URI/v2/proxiedcallbacks/call-callback/http%3A%2F%2Fstart',
+                whenhangup: 'http://BASE_URI/v2/proxiedcallbacks/call-callback/http%3A%2F%2Fend'
             };
             expect(actual).to.deep.equal(expected);
         });

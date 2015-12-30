@@ -1,1 +1,3 @@
-export default baseUri => uri => `${baseUri}/v2/proxiedcallbacks/call-callback/${encodeURIComponent(uri)}`;
+export const proxyForType = type => baseUri => uri => `${baseUri}/v2/proxiedcallbacks/${type}/${encodeURIComponent(uri)}`;
+
+export default proxyForType('call-callback');

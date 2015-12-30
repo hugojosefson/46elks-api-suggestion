@@ -89,7 +89,7 @@ app.use('/v2/proxiedcallbacks/*', allowMethods(['options', 'post']));
 app.use('/v2/proxiedcallbacks/*', v2ProxiedcallbacksRequireAllowedDestinationUri);
 app.use('/v2/proxiedcallbacks/*', bodyParser.json());
 app.use('/v2/proxiedcallbacks/sms/:destinationUri', v2ProxiedcallbacksSms);
-app.use('/v2/proxiedcallbacks/sms_delivery_report/:destinationUri', v2ProxiedcallbacksSms);
+app.use('/v2/proxiedcallbacks/sms-delivery-report/:destinationUri', v2ProxiedcallbacksSms);
 app.use('/v2/proxiedcallbacks/voice_start/:destinationUri', v2ProxiedcallbacksVoiceStart);
 app.use('/v2/proxiedcallbacks/call-callback/:destinationUri', v2ProxiedcallbacksCallCallback);
 
