@@ -8,14 +8,14 @@ import handleRequestError from './handle-request-error';
 
 const postToCollection = ({
     uri,
-    requestTransformer = _.identity,
+    requestTransformer = () => _.identity,
     responseTransformer = () => _.identity
     }) => (req, res) => {
     request({
         uri,
         method: 'post',
         headers: _.pick(req.headers, 'authorization'),
-        form: requestTransformer(req.body)
+        form: requestTransformer(baseUri(req))(req.body)
     })
         .then(resultString => {
             const result = JSON.parse(resultString);

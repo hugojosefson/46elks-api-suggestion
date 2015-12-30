@@ -2,20 +2,19 @@ import _ from 'lodash';
 
 import renameKey from '../utils/rename-key';
 import onlyForKeys from '../utils/only-for-keys';
+import proxy from '../utils/proxyify-uri';
+import unproxy from '../utils/unproxyify-uri';
 
-const isScalar = a => typeof a !== 'object';
+const isPrimitive = a => typeof a !== 'object';
 
-const unproxy = (baseUri) => uri => uri.startsWith(`${baseUri}/v2/proxiedcallbacks/call-callback/`) ? decodeURIComponent(uri.substring((`${baseUri}/v2/proxiedcallbacks/call-callback/`).length)) : uri;
-const proxy = (baseUri) => uri => `${baseUri}/v2/proxiedcallbacks/call-callback/${encodeURIComponent(uri)}`;
-
-export const requestTransformer = baseUri => command => isScalar(command) ? command : _(command)
+export const requestTransformer = baseUri => command => isPrimitive(command) ? command : _(command)
     .thru(renameKey('caller_id', 'callerid'))
     .thru(renameKey('record_call', 'recordcall'))
     .mapValues(requestTransformer(baseUri))
     .mapValues(onlyForKeys(['busy', 'success', 'failed', 'next', 'record', 'recordcall'], proxy(baseUri)))
     .value();
 
-export const responseTransformer = baseUri => command => isScalar(command) ? command : _(command)
+export const responseTransformer = baseUri => command => isPrimitive(command) ? command : _(command)
     .thru(renameKey('callerid', 'caller_id'))
     .thru(renameKey('recordcall', 'record_call'))
     .mapValues(responseTransformer(baseUri))

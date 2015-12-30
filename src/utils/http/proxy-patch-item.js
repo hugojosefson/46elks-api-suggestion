@@ -8,14 +8,14 @@ import handleRequestError from './handle-request-error';
 
 const patchItem = ({
     collectionUri,
-    requestTransformer = _.identity,
-    responseTransformer = _.identity
+    requestTransformer = () => _.identity,
+    responseTransformer = () => _.identity
     }) => (req, res) => {
     request({
         uri: collectionUri + '/' + encodeURIComponent(req.params.id),
         method: 'post',
         headers: _.pick(req.headers, 'authorization'),
-        form: requestTransformer(req.body)
+        form: requestTransformer(baseUri(req))(req.body)
     })
         .then(resultString => {
             const result = JSON.parse(resultString);
@@ -26,7 +26,7 @@ const patchItem = ({
                     _links: {
                         _self: {href: itemUri}
                     }
-                }, responseTransformer(result)));
+                }, responseTransformer(baseUri(req))(result)));
         })
         .catch(handleRequestError(res));
 };

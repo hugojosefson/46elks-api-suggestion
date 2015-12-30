@@ -39,7 +39,7 @@ describe('transform sms', () => {
 
     describe('request', ()=> {
         it('transforms correctly', ()=> {
-            const actual = requestTransformer(MMS);
+            const actual = requestTransformer('http://BASE_URI')(MMS);
             const expected = ELKS_MMS;
             expect(actual).to.deep.equal(expected);
         });
