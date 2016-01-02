@@ -4,6 +4,8 @@ export default res => error => {
         res.sendStatus(404);
     } else if (body && (body.startsWith('Missing key') || /^Key .*? missing$/.test(body))) {
         res.status(400).type('text').send(body);
+    } else if (body && (body.startsWith('Not enough credits'))) {
+        res.status(402).type('text').send(body);
     } else {
         const statusCode = error && error.response && error.response.statusCode || 500;
         if (body) {
