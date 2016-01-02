@@ -1,12 +1,13 @@
-export const unproxyForType = type => baseUri => uri => {
-    const proxyPrefix = `${baseUri}/v2/proxiedcallbacks/${type}/`;
+import Url from 'url';
+import _ from 'lodash';
 
-    if (uri.startsWith(proxyPrefix)) {
-        const destinationUri = uri.substring(proxyPrefix.length);
-        return decodeURIComponent(destinationUri);
+export default baseUri => uri => {
+    const expected = _.pick(Url.parse(`${baseUri}/v2/proxiedcallback`), ['protocol', 'host', 'pathname']);
+    const parsedUri = Url.parse(uri, true);
+
+    if (_.matches(expected)(parsedUri)) {
+        return parsedUri.query.destination_uri;
     } else {
         return uri;
     }
 };
-
-export default unproxyForType('call-callback');

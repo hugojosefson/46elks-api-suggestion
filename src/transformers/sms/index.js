@@ -4,13 +4,13 @@ import renameKey from '../../utils/rename-key';
 import onlyForKeys from '../../utils/only-for-keys';
 import addSelfLink from '../../utils/add-self-link';
 import {proxyForType} from '../../utils/proxyify-uri';
-import {unproxyForType} from '../../utils/unproxyify-uri';
+import unproxy from '../../utils/unproxyify-uri';
 
 import collectImages from './collect-images';
 import expandImages from './expand-images';
 
 export const requestTransformer = baseUri => sms => _(sms)
-    .mapValues(onlyForKeys(['delivery_report_uri'], proxyForType('sms-delivery-report')(baseUri)))
+    .mapValues(onlyForKeys(['delivery_report_uri'], proxyForType('sms_delivery_report')(baseUri)))
     .thru(renameKey('flash', 'flashsms'))
     .mapValues(onlyForKeys(['flashsms'], value => value ? 'yes' : 'no'))
     .thru(expandImages)
@@ -24,5 +24,5 @@ export const responseTransformer = baseUri => sms => _(sms)
     .mapValues(onlyForKeys(['flash'], value => value === 'yes'))
     .thru(collectImages)
     .thru(renameKey('whendelivered', 'delivery_report_uri'))
-    .mapValues(onlyForKeys(['delivery_report_uri'], unproxyForType('sms-delivery-report')(baseUri)))
+    .mapValues(onlyForKeys(['delivery_report_uri'], unproxy(baseUri)))
     .value();

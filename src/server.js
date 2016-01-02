@@ -1,6 +1,5 @@
 import express from 'express';
 import allowMethods from 'allow-methods';
-import bodyParser from 'body-parser';
 
 import health from './routes/health';
 import version from './routes/version';
@@ -25,10 +24,7 @@ import v2MeCalls from './routes/v2/me/calls';
 import v2MeCallsPost from './routes/v2/me/calls-post';
 import v2MeCallsId from './routes/v2/me/calls/id';
 import v2MeCallsIdDelete from './routes/v2/me/calls/id-delete';
-import v2ProxiedcallbacksRequireAllowedDestinationUri from './routes/v2/proxiedcallbacks/require-allowed-destination-uri';
-import v2ProxiedcallbacksSms from './routes/v2/proxiedcallbacks/sms';
-import v2ProxiedcallbacksVoiceStart from './routes/v2/proxiedcallbacks/voice-start';
-import v2ProxiedcallbacksCallCallback from './routes/v2/proxiedcallbacks/call-callback';
+import v2Proxiedcallback from './routes/v2/proxiedcallback';
 
 const app = express();
 app.set('json spaces', 2);
@@ -85,13 +81,8 @@ app.post('/v2/me/calls', v2MeCallsPost);
 app.use('/v2/me', allowMethods(['options', 'get']));
 app.get('/v2/me', v2Me);
 
-app.use('/v2/proxiedcallbacks/*', allowMethods(['options', 'post']));
-app.use('/v2/proxiedcallbacks/*', v2ProxiedcallbacksRequireAllowedDestinationUri);
-app.use('/v2/proxiedcallbacks/*', bodyParser.json());
-app.use('/v2/proxiedcallbacks/sms/:destinationUri', v2ProxiedcallbacksSms);
-app.use('/v2/proxiedcallbacks/sms-delivery-report/:destinationUri', v2ProxiedcallbacksSms);
-app.use('/v2/proxiedcallbacks/voice_start/:destinationUri', v2ProxiedcallbacksVoiceStart);
-app.use('/v2/proxiedcallbacks/call-callback/:destinationUri', v2ProxiedcallbacksCallCallback);
+app.use('/v2/proxiedcallback', allowMethods(['options', 'post']));
+app.post('/v2/proxiedcallback', v2Proxiedcallback);
 
 app.use('/v2', allowMethods(['options', 'get']));
 app.get('/v2', v2);

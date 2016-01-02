@@ -22,7 +22,7 @@ const ELKS_MMS = {
     to: 'you',
     message: 'hello',
     flashsms: 'yes',
-    whendelivered: 'http://BASE_URI/v2/proxiedcallbacks/sms-delivery-report/https%3A%2F%2Fdelivery',
+    whendelivered: 'http://BASE_URI/v2/proxiedcallback?type=sms_delivery_report&destination_uri=https%3A%2F%2Fdelivery',
     image: 'first',
     image2: 'second',
     image3: 'third'

@@ -13,8 +13,8 @@ describe('transform call', () => {
             const expected = {
                 from: 'me',
                 to: 'you',
-                voice_start: 'http://BASE_URI/v2/proxiedcallbacks/call-callback/http%3A%2F%2Fstart',
-                whenhangup: 'http://BASE_URI/v2/proxiedcallbacks/call-callback/http%3A%2F%2Fend'
+                voice_start: 'http://BASE_URI/v2/proxiedcallback?type=voice_action&destination_uri=http%3A%2F%2Fstart',
+                whenhangup: 'http://BASE_URI/v2/proxiedcallback?type=voice_action&destination_uri=http%3A%2F%2Fend'
             };
             expect(actual).to.deep.equal(expected);
         });
