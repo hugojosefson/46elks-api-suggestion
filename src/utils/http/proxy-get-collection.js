@@ -27,7 +27,8 @@ export default ({
                 .value();
 
             const _links = {
-                _self: {href: baseUri(req) + req.originalUrl} // includes any query params
+                parent: {href: baseUri(req) + '/v2/me'},
+                self: {href: baseUri(req) + req.originalUrl} // includes any query params
             };
 
             if (result.next) {

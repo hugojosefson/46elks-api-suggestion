@@ -24,7 +24,7 @@ const patchItem = ({
                 .type('application/hal+json')
                 .send(_.assign({
                     _links: {
-                        _self: {href: itemUri}
+                        self: {href: itemUri}
                     }
                 }, responseTransformer(baseUri(req))(result)));
         })

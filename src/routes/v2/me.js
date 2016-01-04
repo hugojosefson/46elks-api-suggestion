@@ -12,10 +12,12 @@ export default (req, res) => {
     }).then(result => {
         res.type('application/hal+json').send(_.assign({
             _links: {
-                _self: {href: baseUri(req) + '/v2/me'},
+                parent: {href: baseUri(req) + '/v2'},
+                self: {href: baseUri(req) + '/v2/me'},
                 numbers: {href: baseUri(req) + '/v2/me/numbers'},
                 sms: {href: baseUri(req) + '/v2/me/sms'},
-                calls: {href: baseUri(req) + '/v2/me/calls'}
+                calls: {href: baseUri(req) + '/v2/me/calls'},
+                subaccounts: {href: baseUri(req) + '/v2/me/subaccounts'}
             }
         }, result));
     }, handleRequestError(res));

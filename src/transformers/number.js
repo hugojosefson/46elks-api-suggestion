@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import renameKey from '../utils/rename-key';
 import onlyForKeys from '../utils/only-for-keys';
+import addParentLink from '../utils/add-parent-link';
 import addSelfLink from '../utils/add-self-link';
 import proxy from '../utils/proxyify-uri';
 import unproxy from '../utils/unproxyify-uri';
@@ -16,6 +17,7 @@ export const requestTransformer = baseUri => number => _(number)
     .value();
 
 export const responseTransformer = baseUri => number => _(number)
+    .thru(addParentLink(baseUri + '/v2/me/numbers'))
     .thru(addSelfLink(baseUri + '/v2/me/numbers'))
     .map((value, key) => {
         if (key === 'voice_start') {

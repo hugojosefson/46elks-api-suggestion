@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import renameKey from '../../utils/rename-key';
 import onlyForKeys from '../../utils/only-for-keys';
+import addParentLink from '../../utils/add-parent-link';
 import addSelfLink from '../../utils/add-self-link';
 import {proxyForType} from '../../utils/proxyify-uri';
 import unproxy from '../../utils/unproxyify-uri';
@@ -18,6 +19,7 @@ export const requestTransformer = baseUri => sms => _(sms)
     .value();
 
 export const responseTransformer = baseUri => sms => _(sms)
+    .thru(addParentLink(baseUri + '/v2/me/sms'))
     .thru(addSelfLink(baseUri + '/v2/me/sms'))
     .omit(['id'])
     .thru(renameKey('flashsms', 'flash'))

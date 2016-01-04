@@ -128,10 +128,10 @@ References:
 ```json
 {
     "_links": {
-        "_self": "https://api.46elks.com/v2",
-        "numbers": "https://api.46elks.com/v2/numbers",
-        "sms": "https://api.46elks.com/v2/sms",
-        "calls": "https://api.46elks.com/v2/calls"
+        "self": {"href": "https://api.46elks.com/v2"},
+        "numbers": {"href": "https://api.46elks.com/v2/numbers"},
+        "sms": {"href": "https://api.46elks.com/v2/sms"},
+        "calls": {"href": "https://api.46elks.com/v2/calls"}
     }
 }
 ```
