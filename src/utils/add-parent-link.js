@@ -1,3 +1,3 @@
-import _ from 'lodash';
+import addLink from './add-link';
 
-export default collectionUri => item => _.set(_.cloneDeep(item), '_links.parent.href', collectionUri);
+export default addLink('parent');

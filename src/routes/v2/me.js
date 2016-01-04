@@ -2,6 +2,7 @@ import request from 'request-promise';
 import _ from 'lodash';
 
 import baseUri from '../../utils/base-uri';
+import {responseTransformer} from '../../transformers/me';
 import handleRequestError from '../../utils/http/handle-request-error';
 
 export default (req, res) => {
@@ -10,15 +11,6 @@ export default (req, res) => {
         headers: _.pick(req.headers, 'authorization'),
         json: true
     }).then(result => {
-        res.type('application/hal+json').send(_.assign({
-            _links: {
-                parent: {href: baseUri(req) + '/v2'},
-                self: {href: baseUri(req) + '/v2/me'},
-                numbers: {href: baseUri(req) + '/v2/me/numbers'},
-                sms: {href: baseUri(req) + '/v2/me/sms'},
-                calls: {href: baseUri(req) + '/v2/me/calls'},
-                subaccounts: {href: baseUri(req) + '/v2/me/subaccounts'}
-            }
-        }, result));
+        res.type('application/hal+json').send(responseTransformer(baseUri(req))(result));
     }, handleRequestError(res));
 };
