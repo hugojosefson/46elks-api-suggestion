@@ -49,9 +49,9 @@ Reason: This makes it more predictable, and makes the developer not have to keep
 Use `POST` only for non-idempotent creation of subordinate resources. Make sure to respond with appropriate status code,
 and any `Location: ` header where applicable.
 
-Use `PUT` for replacing a resource completely with what's in the request body, setting properties not included to `null`.
-
 Use `PATCH` for replacing only the included properties of a resource.
+
+(Don't use `PUT`. It is for replacing a resource completely with what's in the request body, setting properties not included to `null`.)
 
 *// TODO more details, examples*
 
@@ -62,6 +62,14 @@ References:
 
 Reason: This makes it more predictable, in that HTTP methods are used in the same way as in many other API's, and according to widely-adopted conventions.
 
+### Support `OPTIONS`, respond with `Allow` header, `405 Method Not Allowed`
+
+Use the standard HTTP mechanisms for specifying in an API which HTTP methods are allowed and not.
+
+Specifically, respond with `Allow` header which specifies which HTTP methods are allowed on the current resource. When the resource exists, but the client attempted to use a disallowed HTTP method, respond `405 Method Not Allowed` rather than `403 Forbidden` or `404 Not Found`.
+
+Support the HTTP method `OPTIONS` on all resources, so a client can ask the API for allowed HTTP methods on a resource.
+
 ### Use `true`/`false` instead of `"yes"`/`"no"`
 
 In JSON, use `true` and `false` instead of the strings `"yes"` and `"no"`.
@@ -70,15 +78,21 @@ Reason: This makes it more predictable, in that if the property sounds like a bo
 
 Example in current API: http://www.46elks.com/docs#phone-numbers
 
+*With all other suggestions implemented, this specific case of representing a phone number's active state becomes moot because it is handled by HTTP status codes. Do keep `true`/`false` representation in mind for future things though.*
+
 ### Use all lower-case in resource names
 
 Instead of `/Numbers`, `/Calls` and `/SMS`, use `/numbers`, `/calls`, `/sms`.
 
 Reason: Not having to think about whether the resource has an initial upper-case character or is in all-caps, or something else, makes it more predictable. The most common way to write identifiers is in all lower-case.
 
-### Use phone number as identifier, and relevant HTTP methods
+### Split all names, or none of them
 
-For the `/numbers` resources, use the actual phone number as identifier, instead of a separate id.
+For example, instead of `mobilenumber` and `usagelimit`, use `mobile_number` and `usage_limit`. Just like `sms_uri`.
+
+Reason: Not having to think about whether the resource is written with or without `_` as wordbreak, makes it more predictable.
+
+### Use relevant HTTP methods and HTTP status codes for phone numbers
 
 Use relevant HTTP methods for requests, and HTTP status codes for responses.
 
@@ -91,9 +105,7 @@ Example, for the phone number `+4670000000`:
   * `PATCH /numbers/%2B4670000000` with some parameters in the body, reconfigures an allocated phone number.
   * `DELETE /numbers/%2B4670000000` de-allocates a phone number.
 
-### Tentative: Use `uri` instead of `url`
-
-*// TODO think about this some more. Also consider predictability; if it needs to be `uri` in one place, maybe better to go with `uri` everywhere.*
+### Use `uri` instead of `url`
 
 References:
 
@@ -117,7 +129,7 @@ References:
   * http://stateless.co/hal_specification.html
   * http://phlyrestfully.readthedocs.org/en/latest/halprimer.html
 
-#### `GET /v2`
+#### `GET /v2/me`
 
 ##### Response status
 
@@ -128,10 +140,12 @@ References:
 ```json
 {
     "_links": {
-        "self": {"href": "https://api.46elks.com/v2"},
-        "numbers": {"href": "https://api.46elks.com/v2/numbers"},
-        "sms": {"href": "https://api.46elks.com/v2/sms"},
-        "calls": {"href": "https://api.46elks.com/v2/calls"}
-    }
+        "parent": {"href": "https://api.46elks.com/v2"},
+        "self": {"href": "https://api.46elks.com/v2/me"},
+        "numbers": {"href": "https://api.46elks.com/v2/me/numbers"},
+        "sms": {"href": "https://api.46elks.com/v2/me/sms"},
+        "calls": {"href": "https://api.46elks.com/v2/me/calls"}
+    },
+    ...
 }
 ```
