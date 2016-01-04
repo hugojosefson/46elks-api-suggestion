@@ -6,6 +6,8 @@ export default res => error => {
         res.status(400).type('text').send(body);
     } else if (body && (body.startsWith('Not enough credits'))) {
         res.status(402).type('text').send(body);
+    } else if (body && (body.startsWith('Too long '))) {
+        res.status(400).type('text').send(body);
     } else {
         const statusCode = error && error.response && error.response.statusCode || 500;
         const headers = error && error.response.headers || {};
