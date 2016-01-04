@@ -11,11 +11,13 @@ const postToCollection = ({
     requestTransformer = () => _.identity,
     responseTransformer = () => _.identity
     }) => (req, res) => {
+    const form = requestTransformer(baseUri(req))(req.body);
+    console.log(form);
     request({
         uri,
         method: 'post',
         headers: _.pick(req.headers, 'authorization'),
-        form: requestTransformer(baseUri(req))(req.body)
+        form: form
     })
         .then(resultString => {
             const result = JSON.parse(resultString);
