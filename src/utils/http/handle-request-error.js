@@ -2,6 +2,8 @@ export default res => error => {
     const body = error && error.response && error.response.body;
     if (body === 'Invalid number id') {
         res.sendStatus(404);
+    } else if (body === 'Missing key voice_start') {
+        res.status(400).type('text').send('Missing key voice_start_uri or voice_start_action');
     } else if (body && (body.startsWith('Missing key') || /^Key .*? missing$/.test(body))) {
         res.status(400).type('text').send(body);
     } else if (body && (body.startsWith('Not enough credits'))) {
