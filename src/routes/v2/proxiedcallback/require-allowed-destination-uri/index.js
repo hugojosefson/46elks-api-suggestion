@@ -5,6 +5,7 @@ import isAllowedHostname from './is-allowed-hostname';
 
 export default (req, res, next) => {
     const {destination_uri} = req.query;
+    console.log(destination_uri);
     const {protocol, hostname} = parse(destination_uri.replace(/^(https?:\/)([^/])/, '$1/$2'));
 
     if (!isAllowedProtocol(protocol)) {
