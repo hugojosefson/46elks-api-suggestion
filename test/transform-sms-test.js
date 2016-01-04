@@ -49,7 +49,10 @@ describe('transform sms', () => {
         it('leaves no-image, no-flash sms alone', ()=> {
             const actual = responseTransformer('http://BASE_URI')(SMS);
             const expected = _(SMS)
-                .assign({_links: {self: {href: 'http://BASE_URI/v2/me/sms/ID'}}})
+                .assign({_links: {
+                    parent: {href: 'http://BASE_URI/v2/me/sms'},
+                    self: {href: 'http://BASE_URI/v2/me/sms/ID'}
+                }})
                 .omit('id')
                 .value();
             expect(actual).to.deep.equal(expected);
@@ -58,7 +61,10 @@ describe('transform sms', () => {
         it('transforms correctly', ()=> {
             const actual = responseTransformer('http://BASE_URI')(ELKS_MMS);
             const expected = _(MMS)
-                .assign({_links: {self: {href: 'http://BASE_URI/v2/me/sms/ID'}}})
+                .assign({_links: {
+                    parent: {href: 'http://BASE_URI/v2/me/sms'},
+                    self: {href: 'http://BASE_URI/v2/me/sms/ID'}
+                }})
                 .omit('id')
                 .value();
             expect(actual).to.deep.equal(expected);
