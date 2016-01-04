@@ -8,6 +8,8 @@ export default res => error => {
         res.status(402).type('text').send(body);
     } else {
         const statusCode = error && error.response && error.response.statusCode || 500;
+        const headers = error && error.response.headers || {};
+        res.set(headers);
         if (body) {
             res.status(statusCode).send(body);
         } else {
