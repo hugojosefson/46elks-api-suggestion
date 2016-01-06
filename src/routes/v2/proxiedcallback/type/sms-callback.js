@@ -1,6 +1,8 @@
-import request from 'request';
+import request from 'request-promise';
 
 import baseUri from '../../../../utils/base-uri';
+import handleRequestError from '../../../../utils/http/handle-request-error';
+
 import {responseTransformer} from '../../../../transformers/sms';
 
 export default (req, res) => {
@@ -13,5 +15,7 @@ export default (req, res) => {
         method: 'post',
         json: true,
         body: transformed
-    }).pipe(res);
+    })
+        .then(response => res.status(200).send(response))
+        .catch(handleRequestError);
 };

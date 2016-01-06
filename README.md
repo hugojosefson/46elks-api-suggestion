@@ -114,6 +114,10 @@ Example, for the phone number `+4670000000`:
   * `PATCH /numbers/%2B4670000000` with some parameters in the body, reconfigures an allocated phone number.
   * `DELETE /numbers/%2B4670000000` de-allocates a phone number.
 
+### Accept any `2xx` status code when POST'ing sms
+
+When 46elks POST's an sms because it was received at the phone number, it should accept any `2xx` HTTP status code as delivery confirmation. Specifically, it must accept `204 No Content` to mean the server has received the sms and chooses not to respond with an sms of its own.
+
 ### Use `application/hal+json`
 
 Supply links to related resources, from any resource where it is applicable.
