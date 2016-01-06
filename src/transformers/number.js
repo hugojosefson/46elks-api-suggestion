@@ -4,11 +4,12 @@ import renameKey from '../utils/rename-key';
 import onlyForKeys from '../utils/only-for-keys';
 import addParentLink from '../utils/add-parent-link';
 import addSelfLink from '../utils/add-self-link';
-import proxy from '../utils/proxyify-uri';
+import {proxyForType} from '../utils/proxyify-uri';
 import unproxy from '../utils/unproxyify-uri';
 
 export const requestTransformer = baseUri => number => _(number)
-    .mapValues(onlyForKeys(['voice_start_uri', 'sms_uri', 'mms_uri'], proxy(baseUri)))
+    .mapValues(onlyForKeys(['sms_uri', 'mms_uri'], proxyForType('sms')(baseUri)))
+    .mapValues(onlyForKeys(['voice_start_uri'], proxyForType('voice_start')(baseUri)))
     .mapValues(onlyForKeys(['voice_start_action'], JSON.stringify))
     .thru(renameKey('sms_uri', 'sms_url'))
     .thru(renameKey('mms_uri', 'mms_url'))
