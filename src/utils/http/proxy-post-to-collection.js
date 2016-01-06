@@ -23,6 +23,7 @@ const postToCollection = ({
             const result = JSON.parse(resultString);
             const entity = responseTransformer(baseUri(req))(result);
             res
+                .status(201)
                 .type('application/hal+json')
                 .header('Location', entity._links.self.href)
                 .send(entity);
