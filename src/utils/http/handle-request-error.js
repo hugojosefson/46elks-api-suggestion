@@ -12,6 +12,8 @@ export default res => error => {
         res.status(402).type('text').send(body);
     } else if (body && (body.startsWith('Too long '))) {
         res.status(400).type('text').send(body);
+    } else if (body === 'The sms_url you tried to use is not a valid URL') {
+        res.status(400).type('text').send('The sms_uri you tried to use is not a valid URI');
     } else {
         const statusCode = error && error.response && error.response.statusCode || 500;
         const headers = error && error.response.headers || {};
