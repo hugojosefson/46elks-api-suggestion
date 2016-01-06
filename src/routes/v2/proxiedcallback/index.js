@@ -10,7 +10,7 @@ import voiceActionCallback from './type/voice-action-callback';
 
 export default compose([
     requireAllowedDestinationUri,
-    bodyParser.json(),
+    bodyParser.urlencoded(),
     mapTypeToMiddleware({
         sms: smsCallback,
         sms_delivery_report: smsCallback,
