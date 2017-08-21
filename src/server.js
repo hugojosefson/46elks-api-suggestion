@@ -1,6 +1,8 @@
 import express from 'express'
 import allowMethods from 'allow-methods'
 
+import log from './utils/log'
+
 import health from './routes/health'
 import version from './routes/version'
 import echo from './routes/echo'
@@ -32,6 +34,8 @@ app.set('trust proxy', true)
 app.set('strict routing', true)
 app.enable('strict routing')
 app.set('case sensitive routing', true)
+
+app.use(log)
 
 app.use('/health', allowMethods(['options', 'get']))
 app.get('/health', health)
