@@ -1,5 +1,7 @@
 # Suggestion for a new version of the 46elks.com API
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hugojosefson/46elks-api-suggestion.svg)](https://greenkeeper.io/)
+
 The [API for 46elks.com](http://www.46elks.com/docs) is very interesting and good in many ways. There are also ways it could improve to be more predictable, for example by adopting widely used standards and conventions.
 
 These are some suggestions for how the 46elks.com API can be improved.
