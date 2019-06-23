@@ -1,9 +1,10 @@
-import PrivateIps from 'private-ips';
-import {promisifyAll} from 'bluebird';
+import PrivateIps from 'private-ips'
+import { promisify } from 'util'
 
-const checker = promisifyAll(new PrivateIps({ipv6: true}));
+const privateIps = new PrivateIps({ ipv6: true })
+const isPrivate = promisify(privateIps.isPrivate.bind(privateIps))
 
-export default hostname => checker.isPrivateAsync(hostname).then(isPrivate => {
-    const isAllowed = !isPrivate;
-    return isAllowed;
-});
+export default hostname => isPrivate(hostname).then(isIpPrivate => {
+  const isAllowed = !isIpPrivate
+  return isAllowed
+})

@@ -1,1 +1,1 @@
-export default req => `${req.protocol}://${req.headers.host}`;
+export default req => `${req.protocol}://${req.headers.host}`

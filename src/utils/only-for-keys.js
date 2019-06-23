@@ -1,4 +1,6 @@
-import {includes} from 'lodash';
+import _ from 'lodash'
+
+const { includes } = _
 
 /**
  * Returns an iteratee function for _.mapValues(), which only operates on one key.
@@ -6,4 +8,4 @@ import {includes} from 'lodash';
  * @param onlyForKeys array of keys to operate on
  * @param valueMapper fn(currentValue) which maps current value to a new value
  */
-export default (onlyForKeys, valueMapper) => (value, key) => includes(onlyForKeys, key) ? valueMapper(value) : value;
+export default (onlyForKeys, valueMapper) => (value, key) => includes(onlyForKeys, key) ? valueMapper(value) : value

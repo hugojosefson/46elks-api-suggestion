@@ -1,13 +1,13 @@
-import _ from 'lodash';
+import _ from 'lodash'
 
 export default (fromKey, toKey) => object => {
-    if (!object) {
-        return {};
-    }
+  if (!object) {
+    return {}
+  }
 
-    if (object.hasOwnProperty(fromKey)) {
-        return _.omit(_.assign({}, object, {[toKey]: object[fromKey]}), fromKey);
-    } else {
-        return _.assign({}, object);
-    }
-};
+  if (object.hasOwnProperty(fromKey)) {
+    return _.omit(_.assign({}, object, { [toKey]: object[fromKey] }), fromKey)
+  } else {
+    return _.assign({}, object)
+  }
+}

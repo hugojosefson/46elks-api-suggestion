@@ -1,3 +1,3 @@
-import addLink from './add-link';
+import addLink from './add-link'
 
-export default addLink('parent');
+export default addLink('parent')

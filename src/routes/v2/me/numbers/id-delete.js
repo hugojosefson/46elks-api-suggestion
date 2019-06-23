@@ -1,19 +1,19 @@
-import request from 'request-promise';
-import _ from 'lodash';
+import request from 'request-promise-native'
+import _ from 'lodash'
 
-import handleRequestError from '../../../../utils/http/handle-request-error';
+import handleRequestError from '../../../../utils/http/handle-request-error'
 
 export default (req, res) => {
-    request({
-        uri: 'https://api.46elks.com/a1/Numbers/' + encodeURIComponent(req.params.id),
-        method: 'post',
-        headers: _.pick(req.headers, 'authorization'),
-        form: {
-            active: 'no'
-        }
+  request({
+    uri: 'https://api.46elks.com/a1/Numbers/' + encodeURIComponent(req.params.id),
+    method: 'post',
+    headers: _.pick(req.headers, 'authorization'),
+    form: {
+      active: 'no'
+    }
+  })
+    .then(() => {
+      res.sendStatus(204)
     })
-        .then(() => {
-            res.sendStatus(204);
-        })
-        .catch(handleRequestError(res));
-};
+    .catch(handleRequestError(res))
+}

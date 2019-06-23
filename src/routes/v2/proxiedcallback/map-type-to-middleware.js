@@ -1,3 +1,3 @@
-import mapQueryParamToMiddleware from './map-query-param-to-middleware';
+import mapQueryParamToMiddleware from './map-query-param-to-middleware'
 
-export default mapQueryParamToMiddleware('type');
+export default mapQueryParamToMiddleware('type')
