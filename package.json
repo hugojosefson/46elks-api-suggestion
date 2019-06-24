@@ -19,7 +19,7 @@
     "allow-methods": "^2.0.0",
     "body-parser": "^1.14.2",
     "compose-middleware": "^5.0.1",
-    "express": "^5.0.0-alpha.2",
+    "express": "^4.17.1",
     "git-repo-info": "^2.1.0",
     "load-pkg": "^4.0.0",
     "lodash": "^4.17.11",
@@ -27,15 +27,15 @@
     "private-ips": "0.0.3",
     "qs": "^6.7.0",
     "request": "^2.67.0",
-    "request-promise-native": "^1.0.7",
-    "standard": "^12.0.1"
+    "request-promise-native": "^1.0.7"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mjs-mocha": "^3.0.0",
     "mocha": "^6.1.4",
     "npm-run-all": "^4.1.5",
-    "snazzy": "^8.0.0"
+    "snazzy": "^8.0.0",
+    "standard": "^12.0.1"
   },
   "engines": {
     "node": ">=12"
