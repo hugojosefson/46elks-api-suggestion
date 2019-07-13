@@ -1,4 +1,4 @@
-import { parse } from 'url'
+import { URL } from 'url'
 
 import isAllowedProtocol from './is-allowed-protocol'
 import isAllowedHostname from './is-allowed-hostname'
@@ -7,7 +7,7 @@ export default (req, res, next) => {
   // eslint-disable-next-line camelcase
   const { destination_uri } = req.query
   console.log(destination_uri)
-  const { protocol, hostname } = parse(destination_uri.replace(/^(https?:\/)([^/])/, '$1/$2'))
+  const { protocol, hostname } = new URL(destination_uri.replace(/^(https?:\/)([^/])/, '$1/$2'))
 
   if (!isAllowedProtocol(protocol)) {
     res.status(403).type('text').send(`Protocol '${protocol}' not allowed.`)
