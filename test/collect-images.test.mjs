@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import chai from 'chai'
-const { expect } = chai
 import collectImages, { imagesFromMms } from '../src/transformers/sms/collect-images'
+const { expect } = chai
 
 const MMS = {
   from: 'me',

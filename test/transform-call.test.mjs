@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import chai from 'chai'
-const { expect } = chai
 import { requestTransformer } from '../src/transformers/call'
+const { expect } = chai
 
 describe('transform call', () => {
   describe('request', () => {

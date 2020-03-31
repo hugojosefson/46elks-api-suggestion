@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import chai from 'chai'
-const { expect } = chai
 
 import renameKey from '../src/utils/rename-key'
+const { expect } = chai
 
 describe('rename-key', () => {
   it('sets b=a', () => {

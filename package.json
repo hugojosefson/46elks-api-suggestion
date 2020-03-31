@@ -23,19 +23,19 @@
     "git-repo-info": "^2.1.0",
     "load-pkg": "^4.0.0",
     "lodash": "^4.17.14",
-    "nodemon": "^1.8.1",
+    "nodemon": "^2.0.2",
     "private-ips": "0.0.3",
-    "qs": "^6.7.0",
-    "request": "^2.67.0",
+    "qs": "^6.9.3",
+    "request": "^2.88.2",
     "request-promise-native": "^1.0.7"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mjs-mocha": "^3.0.0",
-    "mocha": "^6.1.4",
+    "mocha": "^7.1.1",
     "npm-run-all": "^4.1.5",
     "snazzy": "^8.0.0",
-    "standard": "^13.0.2"
+    "standard": "^14.3.3"
   },
   "engines": {
     "node": ">=12"
