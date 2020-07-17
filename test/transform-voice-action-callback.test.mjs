@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import chai from 'chai'
-import { responseTransformer } from '../src/transformers/voice-action-callback'
+import { responseTransformer } from '../src/transformers/voice-action-callback.mjs'
 const { expect } = chai
 
 const expectDeepEqual = ({ actual, expected }) => expect(actual).to.deep.equal(expected)

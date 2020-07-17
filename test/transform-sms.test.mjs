@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import _ from 'lodash'
 import chai from 'chai'
-import { requestTransformer, responseTransformer } from '../src/transformers/sms'
+import { requestTransformer, responseTransformer } from '../src/transformers/sms/index.mjs'
 const { expect } = chai
 
 const MMS = {

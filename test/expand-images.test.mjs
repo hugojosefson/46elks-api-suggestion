@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import chai from 'chai'
-import expandImages, { imagePropertiesFromArray } from '../src/transformers/sms/expand-images'
+import expandImages, { imagePropertiesFromArray } from '../src/transformers/sms/expand-images.mjs'
 const { expect } = chai
 
 const MMS = {
