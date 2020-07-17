@@ -8,4 +8,5 @@ const { includes } = _
  * @param onlyForKeys array of keys to operate on
  * @param valueMapper fn(currentValue) which maps current value to a new value
  */
-export default (onlyForKeys, valueMapper) => (value, key) => includes(onlyForKeys, key) ? valueMapper(value) : value
+export default (onlyForKeys, valueMapper) => (value, key) =>
+  includes(onlyForKeys, key) ? valueMapper(value) : value

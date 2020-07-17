@@ -11,7 +11,7 @@ const { compose } = ComposeMiddleware
 const postToCollection = ({
   uri,
   requestTransformer = () => _.identity,
-  responseTransformer = () => _.identity
+  responseTransformer = () => _.identity,
 }) => (req, res) => {
   const form = requestTransformer(baseUri(req))(req.body)
   console.log(form)
@@ -19,7 +19,7 @@ const postToCollection = ({
     uri,
     method: 'post',
     headers: _.pick(req.headers, 'authorization'),
-    form: form
+    form: form,
   })
     .then(resultString => {
       const result = JSON.parse(resultString)
@@ -33,7 +33,5 @@ const postToCollection = ({
     .catch(handleRequestError(res))
 }
 
-export default (...args) => compose([
-  bodyParser.json(),
-  postToCollection(...args)
-])
+export default (...args) =>
+  compose([bodyParser.json(), postToCollection(...args)])

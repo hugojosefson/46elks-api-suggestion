@@ -10,6 +10,6 @@ export default (req, res) => {
     uri: destination_uri,
     method: 'post',
     json: true,
-    body: responseTransformer(baseUri(req))(req.body)
+    body: responseTransformer(baseUri(req))(req.body),
   }).pipe(res)
 }

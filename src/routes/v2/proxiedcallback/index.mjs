@@ -17,9 +17,9 @@ export default compose([
     sms: smsCallback,
     sms_delivery_report: smsCallback,
     voice_start: voiceStartCallback,
-    voice_action: voiceActionCallback
+    voice_action: voiceActionCallback,
   }),
   (req, res) => {
     res.status(400).send(`Invalid type '${req.query.type}'.`)
-  }
+  },
 ])

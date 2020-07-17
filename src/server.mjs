@@ -44,7 +44,10 @@ app.use('*/echo/*', echo)
 app.use('/version', allowMethods(['options', 'get']))
 app.get('/version', version)
 
-app.use('/v2/me/numbers/:id', allowMethods(['options', 'get', 'delete', 'patch']))
+app.use(
+  '/v2/me/numbers/:id',
+  allowMethods(['options', 'get', 'delete', 'patch'])
+)
 app.get('/v2/me/numbers/:id', v2MeNumbersId)
 app.delete('/v2/me/numbers/:id', v2MeNumbersIdDelete)
 app.patch('/v2/me/numbers/:id', v2MeNumbersIdPatch)
@@ -53,7 +56,10 @@ app.use('/v2/me/numbers', allowMethods(['options', 'get', 'post']))
 app.get('/v2/me/numbers', v2MeNumbers)
 app.post('/v2/me/numbers', v2MeNumbersPost)
 
-app.use('/v2/me/subaccounts/:id', allowMethods(['options', 'get', 'delete', 'patch']))
+app.use(
+  '/v2/me/subaccounts/:id',
+  allowMethods(['options', 'get', 'delete', 'patch'])
+)
 app.get('/v2/me/subaccounts/:id', v2MeSubaccountsId)
 app.delete('/v2/me/subaccounts/:id', v2MeSubaccountsIdDelete)
 app.patch('/v2/me/subaccounts/:id', v2MeSubaccountsIdPatch)

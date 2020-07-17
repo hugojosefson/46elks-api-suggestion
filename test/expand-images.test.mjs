@@ -1,17 +1,15 @@
 /* eslint-env mocha */
 import chai from 'chai'
-import expandImages, { imagePropertiesFromArray } from '../src/transformers/sms/expand-images.mjs'
+import expandImages, {
+  imagePropertiesFromArray,
+} from '../src/transformers/sms/expand-images.mjs'
 const { expect } = chai
 
 const MMS = {
   from: 'me',
   to: 'you',
-  images: [
-    'first',
-    'second',
-    'third'
-  ],
-  message: 'hello'
+  images: ['first', 'second', 'third'],
+  message: 'hello',
 }
 
 const EXPECTED_MMS = {
@@ -20,19 +18,19 @@ const EXPECTED_MMS = {
   message: 'hello',
   image: 'first',
   image2: 'second',
-  image3: 'third'
+  image3: 'third',
 }
 
 const SMS = {
   from: 'me',
   to: 'you',
-  message: 'hello'
+  message: 'hello',
 }
 
 const IMAGE_PROPERTIES = {
   image: 'first',
   image2: 'second',
-  image3: 'third'
+  image3: 'third',
 }
 
 describe('expand-images', () => {

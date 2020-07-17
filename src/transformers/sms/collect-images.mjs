@@ -7,13 +7,14 @@ const notHasImageKey = (...args) => !hasImageKey(...args)
 const removeImageFromKey = ([key, value]) => [key.replace(/^image/, ''), value]
 const keyNumerically = ([key, value]) => Number(key)
 
-export const imagesFromMms = mms => _(mms)
-  .map((value, key) => [key, value])
-  .filter(hasImageKey)
-  .map(removeImageFromKey)
-  .sortBy(keyNumerically)
-  .map(([key, value]) => value)
-  .value()
+export const imagesFromMms = mms =>
+  _(mms)
+    .map((value, key) => [key, value])
+    .filter(hasImageKey)
+    .map(removeImageFromKey)
+    .sortBy(keyNumerically)
+    .map(([key, value]) => value)
+    .value()
 
 export default mms => {
   const images = imagesFromMms(mms)

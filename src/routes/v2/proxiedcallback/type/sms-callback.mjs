@@ -15,7 +15,7 @@ export default (req, res) => {
     uri: destination_uri,
     method: 'post',
     json: true,
-    body: transformed
+    body: transformed,
   })
     .then(response => res.status(200).send(response))
     .catch(handleRequestError)

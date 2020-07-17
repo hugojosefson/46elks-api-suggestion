@@ -12,10 +12,12 @@ export default (req, res) => {
     res.sendStatus(404)
   } else {
     request({
-      uri: 'https://api.46elks.com/a1/Subaccounts/' + encodeURIComponent(req.params.id),
+      uri:
+        'https://api.46elks.com/a1/Subaccounts/' +
+        encodeURIComponent(req.params.id),
       method: 'post',
       headers: _.pick(req.headers, 'authorization'),
-      form: { usagelimit: 0 }
+      form: { usagelimit: 0 },
     })
       .then(() => {
         deletedSubaccounts.add(req.params.id)

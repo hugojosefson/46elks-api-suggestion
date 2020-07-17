@@ -1,7 +1,10 @@
 /* eslint-env mocha */
 import _ from 'lodash'
 import chai from 'chai'
-import { requestTransformer, responseTransformer } from '../src/transformers/sms/index.mjs'
+import {
+  requestTransformer,
+  responseTransformer,
+} from '../src/transformers/sms/index.mjs'
 const { expect } = chai
 
 const MMS = {
@@ -11,11 +14,7 @@ const MMS = {
   message: 'hello',
   flash: true,
   delivery_report_uri: 'https://delivery',
-  images: [
-    'first',
-    'second',
-    'third'
-  ]
+  images: ['first', 'second', 'third'],
 }
 
 const ELKS_MMS = {
@@ -24,17 +23,18 @@ const ELKS_MMS = {
   to: 'you',
   message: 'hello',
   flashsms: 'yes',
-  whendelivered: 'http://BASE_URI/v2/proxiedcallback?type=sms_delivery_report&destination_uri=https%3A%2F%2Fdelivery',
+  whendelivered:
+    'http://BASE_URI/v2/proxiedcallback?type=sms_delivery_report&destination_uri=https%3A%2F%2Fdelivery',
   image: 'first',
   image2: 'second',
-  image3: 'third'
+  image3: 'third',
 }
 
 const SMS = {
   id: 'ID',
   from: 'me',
   to: 'you',
-  message: 'hello'
+  message: 'hello',
 }
 
 describe('transform sms', () => {
@@ -53,8 +53,8 @@ describe('transform sms', () => {
         .assign({
           _links: {
             parent: { href: 'http://BASE_URI/v2/me/sms' },
-            self: { href: 'http://BASE_URI/v2/me/sms/ID' }
-          }
+            self: { href: 'http://BASE_URI/v2/me/sms/ID' },
+          },
         })
         .omit('id')
         .value()
@@ -67,8 +67,8 @@ describe('transform sms', () => {
         .assign({
           _links: {
             parent: { href: 'http://BASE_URI/v2/me/sms' },
-            self: { href: 'http://BASE_URI/v2/me/sms/ID' }
-          }
+            self: { href: 'http://BASE_URI/v2/me/sms/ID' },
+          },
         })
         .omit('id')
         .value()

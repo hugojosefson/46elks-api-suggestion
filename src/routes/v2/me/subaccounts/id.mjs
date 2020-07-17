@@ -11,9 +11,11 @@ export default (req, res) => {
     res.sendStatus(404)
   } else {
     request({
-      uri: 'https://api.46elks.com/a1/Subaccounts/' + encodeURIComponent(req.params.id),
+      uri:
+        'https://api.46elks.com/a1/Subaccounts/' +
+        encodeURIComponent(req.params.id),
       headers: _.pick(req.headers, 'authorization'),
-      json: true
+      json: true,
     })
       .then(result => {
         res

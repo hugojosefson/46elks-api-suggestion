@@ -14,7 +14,7 @@ export default (req, res) => {
     request({
       uri: 'https://api.46elks.com/a1/SMS/' + encodeURIComponent(req.params.id),
       headers: _.pick(req.headers, 'authorization'),
-      json: true
+      json: true,
     })
       .then(() => {
         deletedSmses.add(req.params.id)

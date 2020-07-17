@@ -7,9 +7,10 @@ import handleRequestError from '../../../../utils/http/handle-request-error.mjs'
 
 export default (req, res) => {
   request({
-    uri: 'https://api.46elks.com/a1/Numbers/' + encodeURIComponent(req.params.id),
+    uri:
+      'https://api.46elks.com/a1/Numbers/' + encodeURIComponent(req.params.id),
     headers: _.pick(req.headers, 'authorization'),
-    json: true
+    json: true,
   })
     .then(result => {
       res

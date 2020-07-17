@@ -1,6 +1,8 @@
 /* eslint-env mocha */
 import chai from 'chai'
-import collectImages, { imagesFromMms } from '../src/transformers/sms/collect-images.mjs'
+import collectImages, {
+  imagesFromMms,
+} from '../src/transformers/sms/collect-images.mjs'
 const { expect } = chai
 
 const MMS = {
@@ -11,22 +13,16 @@ const MMS = {
   image2: 'second',
   message: 'hello',
   image: 'first',
-  image3: 'third'
+  image3: 'third',
 }
 
 const SMS = {
   from: 'me',
   to: 'you',
-  message: 'hello'
+  message: 'hello',
 }
 
-const IMAGES = [
-  'first',
-  'second',
-  'third',
-  'tenth',
-  'twentieth'
-]
+const IMAGES = ['first', 'second', 'third', 'tenth', 'twentieth']
 
 describe('collect-images', () => {
   describe('imagesFromMms', () => {
@@ -49,7 +45,7 @@ describe('collect-images', () => {
       from: 'me',
       to: 'you',
       message: 'hello',
-      images: IMAGES
+      images: IMAGES,
     }
     expect(actual).to.deep.equal(expected)
   })

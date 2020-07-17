@@ -9,8 +9,10 @@ export default (req, res) => {
   request({
     uri: 'https://api.46elks.com/a1/Me',
     headers: _.pick(req.headers, 'authorization'),
-    json: true
+    json: true,
   }).then(result => {
-    res.type('application/hal+json').send(responseTransformer(baseUri(req))(result))
+    res
+      .type('application/hal+json')
+      .send(responseTransformer(baseUri(req))(result))
   }, handleRequestError(res))
 }
