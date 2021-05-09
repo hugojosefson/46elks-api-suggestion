@@ -53,7 +53,7 @@
     "express": "^4.17.1",
     "git-repo-info": "^2.1.0",
     "load-pkg": "^4.0.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "private-ips": "0.0.3",
     "qs": "^6.9.4",
     "request": "^2.88.2",
